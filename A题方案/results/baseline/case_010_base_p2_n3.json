@@ -1,0 +1,8254 @@
+{
+  "scene": "B",
+  "makespan": 32289,
+  "num_cores": 3,
+  "bandwidth_bytes_per_cycle": 60,
+  "capacity_bytes": {
+    "L1": 524288,
+    "UB": 131072
+  },
+  "memory_peak_by_core": {
+    "0": {
+      "L1": 229376,
+      "UB": 32776
+    },
+    "1": {
+      "L1": 59904,
+      "UB": 14336
+    },
+    "2": {
+      "L1": 59904,
+      "UB": 14336
+    }
+  },
+  "step3_by_core": {
+    "0": {
+      "local_makespan": 34693,
+      "memory_dependency_count": 256,
+      "pipe_op_counts": {
+        "PIPE_MTE2": 24,
+        "PIPE_MTE3": 5,
+        "PIPE_M": 9,
+        "PIPE_V": 170
+      }
+    },
+    "1": {
+      "local_makespan": 34245,
+      "memory_dependency_count": 288,
+      "pipe_op_counts": {
+        "PIPE_MTE2": 49,
+        "PIPE_MTE3": 15,
+        "PIPE_M": 80,
+        "PIPE_V": 211
+      }
+    },
+    "2": {
+      "local_makespan": 34250,
+      "memory_dependency_count": 162,
+      "pipe_op_counts": {
+        "PIPE_MTE2": 35,
+        "PIPE_MTE3": 16,
+        "PIPE_M": 42,
+        "PIPE_V": 155
+      }
+    }
+  },
+  "cross_core_copy_delay_cycles": 500,
+  "cross_task_traffic": 0,
+  "data_movement_bytes": {
+    "original_graph_copy_bytes": 384150,
+    "scheduled_copy_bytes": 453270,
+    "added_copy_bytes": 69120,
+    "partition_added_copy_bytes": 69120,
+    "spill_added_copy_bytes": 0
+  },
+  "task_count": 3,
+  "task_dependencies": [],
+  "cross_core_transfers": [],
+  "per_core_timeline": [
+    {
+      "core_id": 0,
+      "tasks": [
+        {
+          "task_id": 0,
+          "subgraph_ids": [
+            0
+          ],
+          "start": 0,
+          "end": 32289,
+          "duration": 32289
+        }
+      ],
+      "subgraphs": [
+        {
+          "subgraph_id": 0,
+          "start": 0,
+          "end": 32289,
+          "duration": 32289
+        }
+      ],
+      "ops": [
+        {
+          "task_id": 0,
+          "op_id": 1715,
+          "op": "COPY_IN",
+          "subgraph_id": 0,
+          "pipe": "PIPE_MTE2",
+          "start": 0,
+          "end": 822,
+          "duration": 822
+        },
+        {
+          "task_id": 0,
+          "op_id": 154,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 822,
+          "end": 1090,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 1717,
+          "op": "COPY_IN",
+          "subgraph_id": 0,
+          "pipe": "PIPE_MTE2",
+          "start": 822,
+          "end": 1645,
+          "duration": 823
+        },
+        {
+          "task_id": 0,
+          "op_id": 156,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 1090,
+          "end": 1358,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 158,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 1358,
+          "end": 1626,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 160,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 1626,
+          "end": 1894,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 1719,
+          "op": "COPY_IN",
+          "subgraph_id": 0,
+          "pipe": "PIPE_MTE2",
+          "start": 1645,
+          "end": 2467,
+          "duration": 822
+        },
+        {
+          "task_id": 0,
+          "op_id": 162,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 1894,
+          "end": 2162,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 164,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 2162,
+          "end": 2430,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 166,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 2430,
+          "end": 2698,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 1721,
+          "op": "COPY_IN",
+          "subgraph_id": 0,
+          "pipe": "PIPE_MTE2",
+          "start": 2467,
+          "end": 3234,
+          "duration": 767
+        },
+        {
+          "task_id": 0,
+          "op_id": 168,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 2698,
+          "end": 2966,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 258,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 2966,
+          "end": 2979,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 170,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 2979,
+          "end": 3247,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 1723,
+          "op": "COPY_IN",
+          "subgraph_id": 0,
+          "pipe": "PIPE_MTE2",
+          "start": 3234,
+          "end": 3965,
+          "duration": 731
+        },
+        {
+          "task_id": 0,
+          "op_id": 172,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 3247,
+          "end": 3515,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 174,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 3515,
+          "end": 3783,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 176,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 3783,
+          "end": 4051,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 1725,
+          "op": "COPY_IN",
+          "subgraph_id": 0,
+          "pipe": "PIPE_MTE2",
+          "start": 3965,
+          "end": 4409,
+          "duration": 444
+        },
+        {
+          "task_id": 0,
+          "op_id": 178,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 4051,
+          "end": 4319,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 180,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 4319,
+          "end": 4587,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 1727,
+          "op": "COPY_IN",
+          "subgraph_id": 0,
+          "pipe": "PIPE_MTE2",
+          "start": 4409,
+          "end": 4683,
+          "duration": 274
+        },
+        {
+          "task_id": 0,
+          "op_id": 182,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 4587,
+          "end": 4855,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 1729,
+          "op": "COPY_IN",
+          "subgraph_id": 0,
+          "pipe": "PIPE_MTE2",
+          "start": 4683,
+          "end": 4957,
+          "duration": 274
+        },
+        {
+          "task_id": 0,
+          "op_id": 184,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 4855,
+          "end": 5123,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 1731,
+          "op": "COPY_IN",
+          "subgraph_id": 0,
+          "pipe": "PIPE_MTE2",
+          "start": 4957,
+          "end": 5231,
+          "duration": 274
+        },
+        {
+          "task_id": 0,
+          "op_id": 260,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 5123,
+          "end": 5136,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 270,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 5136,
+          "end": 5149,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 186,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 5149,
+          "end": 5417,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 1733,
+          "op": "COPY_IN",
+          "subgraph_id": 0,
+          "pipe": "PIPE_MTE2",
+          "start": 5231,
+          "end": 5506,
+          "duration": 275
+        },
+        {
+          "task_id": 0,
+          "op_id": 188,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 5417,
+          "end": 5685,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 1735,
+          "op": "COPY_IN",
+          "subgraph_id": 0,
+          "pipe": "PIPE_MTE2",
+          "start": 5506,
+          "end": 5780,
+          "duration": 274
+        },
+        {
+          "task_id": 0,
+          "op_id": 190,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 5685,
+          "end": 5953,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 1737,
+          "op": "COPY_IN",
+          "subgraph_id": 0,
+          "pipe": "PIPE_MTE2",
+          "start": 5780,
+          "end": 6250,
+          "duration": 470
+        },
+        {
+          "task_id": 0,
+          "op_id": 192,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 5953,
+          "end": 6221,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 194,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 6221,
+          "end": 6489,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 1739,
+          "op": "COPY_IN",
+          "subgraph_id": 0,
+          "pipe": "PIPE_MTE2",
+          "start": 6250,
+          "end": 6566,
+          "duration": 316
+        },
+        {
+          "task_id": 0,
+          "op_id": 196,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 6489,
+          "end": 6757,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 1741,
+          "op": "COPY_IN",
+          "subgraph_id": 0,
+          "pipe": "PIPE_MTE2",
+          "start": 6566,
+          "end": 7056,
+          "duration": 490
+        },
+        {
+          "task_id": 0,
+          "op_id": 198,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 6757,
+          "end": 7025,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 200,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 7025,
+          "end": 7293,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 262,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 7293,
+          "end": 7306,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 202,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 7306,
+          "end": 7574,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 204,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 7574,
+          "end": 7842,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 206,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 7842,
+          "end": 8110,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 208,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 8110,
+          "end": 8378,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 210,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 8378,
+          "end": 8646,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 212,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 8646,
+          "end": 8914,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 214,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 8914,
+          "end": 9182,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 216,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 9182,
+          "end": 9450,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 264,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 9450,
+          "end": 9463,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 272,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 9463,
+          "end": 9476,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 276,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 9476,
+          "end": 9489,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 218,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 9489,
+          "end": 9757,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 220,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 9757,
+          "end": 10025,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 222,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 10025,
+          "end": 10293,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 224,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 10293,
+          "end": 10561,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 226,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 10561,
+          "end": 10829,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 228,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 10829,
+          "end": 11097,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 230,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 11097,
+          "end": 11365,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 232,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 11365,
+          "end": 11633,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 266,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 11633,
+          "end": 11646,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 234,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 11646,
+          "end": 11914,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 236,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 11914,
+          "end": 12182,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 238,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 12182,
+          "end": 12450,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 240,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 12450,
+          "end": 12718,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 242,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 12718,
+          "end": 12986,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 244,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 12986,
+          "end": 13254,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 246,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 13254,
+          "end": 13522,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 248,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 13522,
+          "end": 13790,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 268,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 13790,
+          "end": 13803,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 274,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 13803,
+          "end": 13816,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 250,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 13816,
+          "end": 14084,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 252,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 14084,
+          "end": 14352,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 254,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 14352,
+          "end": 14620,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 256,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 14620,
+          "end": 14888,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 278,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 14888,
+          "end": 14901,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 280,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 14901,
+          "end": 14914,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 285,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 14914,
+          "end": 15182,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 287,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 15182,
+          "end": 15450,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 289,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 15450,
+          "end": 15463,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 291,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 15463,
+          "end": 15731,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 293,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 15731,
+          "end": 15999,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 295,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 15999,
+          "end": 16267,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 297,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 16267,
+          "end": 16535,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 299,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 16535,
+          "end": 16803,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 301,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 16803,
+          "end": 17071,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 303,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 17071,
+          "end": 17339,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 305,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 17339,
+          "end": 17607,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 395,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 17607,
+          "end": 17620,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 307,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 17620,
+          "end": 17888,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 309,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 17888,
+          "end": 18156,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 311,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 18156,
+          "end": 18424,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 313,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 18424,
+          "end": 18692,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 315,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 18692,
+          "end": 18960,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 317,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 18960,
+          "end": 19228,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 319,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 19228,
+          "end": 19496,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 321,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 19496,
+          "end": 19764,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 397,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 19764,
+          "end": 19777,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 407,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 19777,
+          "end": 19790,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 323,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 19790,
+          "end": 20058,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 325,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 20058,
+          "end": 20326,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 327,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 20326,
+          "end": 20594,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 329,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 20594,
+          "end": 20862,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 331,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 20862,
+          "end": 21130,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 333,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 21130,
+          "end": 21398,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 335,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 21398,
+          "end": 21666,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 337,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 21666,
+          "end": 21934,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 399,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 21934,
+          "end": 21947,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 339,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 21947,
+          "end": 22215,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 341,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 22215,
+          "end": 22483,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 343,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 22483,
+          "end": 22751,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 345,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 22751,
+          "end": 23019,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 347,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 23019,
+          "end": 23287,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 349,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 23287,
+          "end": 23555,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 351,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 23555,
+          "end": 23823,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 353,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 23823,
+          "end": 24091,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 401,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 24091,
+          "end": 24104,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 409,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 24104,
+          "end": 24117,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 413,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 24117,
+          "end": 24130,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 355,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 24130,
+          "end": 24398,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 357,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 24398,
+          "end": 24666,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 359,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 24666,
+          "end": 24934,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 361,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 24934,
+          "end": 25202,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 363,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 25202,
+          "end": 25470,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 365,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 25470,
+          "end": 25738,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 367,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 25738,
+          "end": 26006,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 369,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 26006,
+          "end": 26274,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 403,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 26274,
+          "end": 26287,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 371,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 26287,
+          "end": 26555,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 373,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 26555,
+          "end": 26823,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 375,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 26823,
+          "end": 27091,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 377,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 27091,
+          "end": 27359,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 1843,
+          "op": "COPY_IN",
+          "subgraph_id": 0,
+          "pipe": "PIPE_MTE2",
+          "start": 27091,
+          "end": 27126,
+          "duration": 35
+        },
+        {
+          "task_id": 0,
+          "op_id": 1687,
+          "op": "COPY_IN",
+          "subgraph_id": 0,
+          "pipe": "PIPE_MTE2",
+          "start": 27126,
+          "end": 27184,
+          "duration": 58
+        },
+        {
+          "task_id": 0,
+          "op_id": 1709,
+          "op": "COPY_IN",
+          "subgraph_id": 0,
+          "pipe": "PIPE_MTE2",
+          "start": 27184,
+          "end": 27194,
+          "duration": 10
+        },
+        {
+          "task_id": 0,
+          "op_id": 47,
+          "op": "MATMUL",
+          "subgraph_id": 0,
+          "pipe": "PIPE_M",
+          "start": 27194,
+          "end": 27368,
+          "duration": 174
+        },
+        {
+          "task_id": 0,
+          "op_id": 1693,
+          "op": "COPY_IN",
+          "subgraph_id": 0,
+          "pipe": "PIPE_MTE2",
+          "start": 27194,
+          "end": 27252,
+          "duration": 58
+        },
+        {
+          "task_id": 0,
+          "op_id": 1699,
+          "op": "COPY_IN",
+          "subgraph_id": 0,
+          "pipe": "PIPE_MTE2",
+          "start": 27252,
+          "end": 27310,
+          "duration": 58
+        },
+        {
+          "task_id": 0,
+          "op_id": 1863,
+          "op": "COPY_IN",
+          "subgraph_id": 0,
+          "pipe": "PIPE_MTE2",
+          "start": 27310,
+          "end": 27368,
+          "duration": 58
+        },
+        {
+          "task_id": 0,
+          "op_id": 379,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 27359,
+          "end": 27627,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 49,
+          "op": "MATMUL",
+          "subgraph_id": 0,
+          "pipe": "PIPE_M",
+          "start": 27368,
+          "end": 27542,
+          "duration": 174
+        },
+        {
+          "task_id": 0,
+          "op_id": 1883,
+          "op": "COPY_IN",
+          "subgraph_id": 0,
+          "pipe": "PIPE_MTE2",
+          "start": 27368,
+          "end": 27381,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 1869,
+          "op": "COPY_IN",
+          "subgraph_id": 0,
+          "pipe": "PIPE_MTE2",
+          "start": 27381,
+          "end": 27439,
+          "duration": 58
+        },
+        {
+          "task_id": 0,
+          "op_id": 1875,
+          "op": "COPY_IN",
+          "subgraph_id": 0,
+          "pipe": "PIPE_MTE2",
+          "start": 27439,
+          "end": 27497,
+          "duration": 58
+        },
+        {
+          "task_id": 0,
+          "op_id": 1889,
+          "op": "COPY_IN",
+          "subgraph_id": 0,
+          "pipe": "PIPE_MTE2",
+          "start": 27497,
+          "end": 27510,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 381,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 27627,
+          "end": 27895,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 383,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 27895,
+          "end": 28163,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 385,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 28163,
+          "end": 28431,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 405,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 28431,
+          "end": 28444,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 411,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 28444,
+          "end": 28457,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 387,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 28457,
+          "end": 28725,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 389,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 28725,
+          "end": 28993,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 391,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 28993,
+          "end": 29261,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 393,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 29261,
+          "end": 29529,
+          "duration": 268
+        },
+        {
+          "task_id": 0,
+          "op_id": 415,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 29529,
+          "end": 29542,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 417,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 29542,
+          "end": 29555,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 1596,
+          "op": "NEG",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 29555,
+          "end": 29568,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 1598,
+          "op": "SIGMOID",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 29568,
+          "end": 29581,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 886,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 29581,
+          "end": 29625,
+          "duration": 44
+        },
+        {
+          "task_id": 0,
+          "op_id": 1969,
+          "op": "COPY_OUT",
+          "subgraph_id": 0,
+          "pipe": "PIPE_MTE3",
+          "start": 29581,
+          "end": 29582,
+          "duration": 1
+        },
+        {
+          "task_id": 0,
+          "op_id": 888,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 29625,
+          "end": 29669,
+          "duration": 44
+        },
+        {
+          "task_id": 0,
+          "op_id": 890,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 29669,
+          "end": 29713,
+          "duration": 44
+        },
+        {
+          "task_id": 0,
+          "op_id": 892,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 29713,
+          "end": 29757,
+          "duration": 44
+        },
+        {
+          "task_id": 0,
+          "op_id": 894,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 29757,
+          "end": 29801,
+          "duration": 44
+        },
+        {
+          "task_id": 0,
+          "op_id": 896,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 29801,
+          "end": 29845,
+          "duration": 44
+        },
+        {
+          "task_id": 0,
+          "op_id": 898,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 29845,
+          "end": 29889,
+          "duration": 44
+        },
+        {
+          "task_id": 0,
+          "op_id": 900,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 29889,
+          "end": 29933,
+          "duration": 44
+        },
+        {
+          "task_id": 0,
+          "op_id": 902,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 29933,
+          "end": 29977,
+          "duration": 44
+        },
+        {
+          "task_id": 0,
+          "op_id": 908,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 29977,
+          "end": 30021,
+          "duration": 44
+        },
+        {
+          "task_id": 0,
+          "op_id": 906,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 30021,
+          "end": 30065,
+          "duration": 44
+        },
+        {
+          "task_id": 0,
+          "op_id": 910,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 30065,
+          "end": 30109,
+          "duration": 44
+        },
+        {
+          "task_id": 0,
+          "op_id": 904,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 30109,
+          "end": 30153,
+          "duration": 44
+        },
+        {
+          "task_id": 0,
+          "op_id": 912,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 30153,
+          "end": 30197,
+          "duration": 44
+        },
+        {
+          "task_id": 0,
+          "op_id": 1071,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 30197,
+          "end": 30241,
+          "duration": 44
+        },
+        {
+          "task_id": 0,
+          "op_id": 51,
+          "op": "SIGMOID",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 30241,
+          "end": 30415,
+          "duration": 174
+        },
+        {
+          "task_id": 0,
+          "op_id": 1855,
+          "op": "COPY_OUT",
+          "subgraph_id": 0,
+          "pipe": "PIPE_MTE3",
+          "start": 30241,
+          "end": 30242,
+          "duration": 1
+        },
+        {
+          "task_id": 0,
+          "op_id": 53,
+          "op": "MUL",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 30415,
+          "end": 30454,
+          "duration": 39
+        },
+        {
+          "task_id": 0,
+          "op_id": 55,
+          "op": "MUL",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 30454,
+          "end": 30493,
+          "duration": 39
+        },
+        {
+          "task_id": 0,
+          "op_id": 57,
+          "op": "MATMUL",
+          "subgraph_id": 0,
+          "pipe": "PIPE_M",
+          "start": 30493,
+          "end": 30667,
+          "duration": 174
+        },
+        {
+          "task_id": 0,
+          "op_id": 59,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 30667,
+          "end": 30688,
+          "duration": 21
+        },
+        {
+          "task_id": 0,
+          "op_id": 1112,
+          "op": "MATMUL",
+          "subgraph_id": 0,
+          "pipe": "PIPE_M",
+          "start": 30667,
+          "end": 30895,
+          "duration": 228
+        },
+        {
+          "task_id": 0,
+          "op_id": 103,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 30688,
+          "end": 30709,
+          "duration": 21
+        },
+        {
+          "task_id": 0,
+          "op_id": 105,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 30709,
+          "end": 30722,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 1562,
+          "op": "NEG",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 30722,
+          "end": 30735,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 1564,
+          "op": "NEG",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 30735,
+          "end": 30748,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 1566,
+          "op": "RELU",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 30748,
+          "end": 30761,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 1949,
+          "op": "COPY_OUT",
+          "subgraph_id": 0,
+          "pipe": "PIPE_MTE3",
+          "start": 30761,
+          "end": 30762,
+          "duration": 1
+        },
+        {
+          "task_id": 0,
+          "op_id": 1114,
+          "op": "MATMUL",
+          "subgraph_id": 0,
+          "pipe": "PIPE_M",
+          "start": 30895,
+          "end": 31123,
+          "duration": 228
+        },
+        {
+          "task_id": 0,
+          "op_id": 1116,
+          "op": "SIGMOID",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 30895,
+          "end": 31123,
+          "duration": 228
+        },
+        {
+          "task_id": 0,
+          "op_id": 1118,
+          "op": "MUL",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 31123,
+          "end": 31171,
+          "duration": 48
+        },
+        {
+          "task_id": 0,
+          "op_id": 1120,
+          "op": "MUL",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 31171,
+          "end": 31219,
+          "duration": 48
+        },
+        {
+          "task_id": 0,
+          "op_id": 1122,
+          "op": "MATMUL",
+          "subgraph_id": 0,
+          "pipe": "PIPE_M",
+          "start": 31219,
+          "end": 31447,
+          "duration": 228
+        },
+        {
+          "task_id": 0,
+          "op_id": 1124,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 31447,
+          "end": 31471,
+          "duration": 24
+        },
+        {
+          "task_id": 0,
+          "op_id": 1163,
+          "op": "MATMUL",
+          "subgraph_id": 0,
+          "pipe": "PIPE_M",
+          "start": 31447,
+          "end": 31675,
+          "duration": 228
+        },
+        {
+          "task_id": 0,
+          "op_id": 1232,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 31471,
+          "end": 31495,
+          "duration": 24
+        },
+        {
+          "task_id": 0,
+          "op_id": 1234,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 31495,
+          "end": 31508,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 1594,
+          "op": "SIGMOID",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 31508,
+          "end": 31521,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 1967,
+          "op": "COPY_OUT",
+          "subgraph_id": 0,
+          "pipe": "PIPE_MTE3",
+          "start": 31521,
+          "end": 31522,
+          "duration": 1
+        },
+        {
+          "task_id": 0,
+          "op_id": 1165,
+          "op": "MATMUL",
+          "subgraph_id": 0,
+          "pipe": "PIPE_M",
+          "start": 31675,
+          "end": 31903,
+          "duration": 228
+        },
+        {
+          "task_id": 0,
+          "op_id": 1167,
+          "op": "SIGMOID",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 31675,
+          "end": 31903,
+          "duration": 228
+        },
+        {
+          "task_id": 0,
+          "op_id": 1169,
+          "op": "MUL",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 31903,
+          "end": 31951,
+          "duration": 48
+        },
+        {
+          "task_id": 0,
+          "op_id": 1171,
+          "op": "MUL",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 31951,
+          "end": 31999,
+          "duration": 48
+        },
+        {
+          "task_id": 0,
+          "op_id": 1173,
+          "op": "MATMUL",
+          "subgraph_id": 0,
+          "pipe": "PIPE_M",
+          "start": 31999,
+          "end": 32227,
+          "duration": 228
+        },
+        {
+          "task_id": 0,
+          "op_id": 1175,
+          "op": "ADD",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 32227,
+          "end": 32251,
+          "duration": 24
+        },
+        {
+          "task_id": 0,
+          "op_id": 1244,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 32251,
+          "end": 32275,
+          "duration": 24
+        },
+        {
+          "task_id": 0,
+          "op_id": 1246,
+          "op": "REDUCE",
+          "subgraph_id": 0,
+          "pipe": "PIPE_V",
+          "start": 32275,
+          "end": 32288,
+          "duration": 13
+        },
+        {
+          "task_id": 0,
+          "op_id": 1899,
+          "op": "COPY_OUT",
+          "subgraph_id": 0,
+          "pipe": "PIPE_MTE3",
+          "start": 32288,
+          "end": 32289,
+          "duration": 1
+        }
+      ]
+    },
+    {
+      "core_id": 1,
+      "tasks": [
+        {
+          "task_id": 1,
+          "subgraph_ids": [
+            1
+          ],
+          "start": 0,
+          "end": 27786,
+          "duration": 27786
+        }
+      ],
+      "subgraphs": [
+        {
+          "subgraph_id": 1,
+          "start": 0,
+          "end": 27786,
+          "duration": 27786
+        }
+      ],
+      "ops": [
+        {
+          "task_id": 1,
+          "op_id": 1903,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 0,
+          "end": 39,
+          "duration": 39
+        },
+        {
+          "task_id": 1,
+          "op_id": 1905,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 39,
+          "end": 99,
+          "duration": 60
+        },
+        {
+          "task_id": 1,
+          "op_id": 1266,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 99,
+          "end": 183,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1907,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 99,
+          "end": 138,
+          "duration": 39
+        },
+        {
+          "task_id": 1,
+          "op_id": 1909,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 138,
+          "end": 198,
+          "duration": 60
+        },
+        {
+          "task_id": 1,
+          "op_id": 1268,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 183,
+          "end": 207,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1911,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 198,
+          "end": 237,
+          "duration": 39
+        },
+        {
+          "task_id": 1,
+          "op_id": 1270,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 207,
+          "end": 291,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1913,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 237,
+          "end": 297,
+          "duration": 60
+        },
+        {
+          "task_id": 1,
+          "op_id": 1272,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 291,
+          "end": 315,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1915,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 297,
+          "end": 336,
+          "duration": 39
+        },
+        {
+          "task_id": 1,
+          "op_id": 1274,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 315,
+          "end": 399,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1917,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 336,
+          "end": 396,
+          "duration": 60
+        },
+        {
+          "task_id": 1,
+          "op_id": 1919,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 396,
+          "end": 435,
+          "duration": 39
+        },
+        {
+          "task_id": 1,
+          "op_id": 1276,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 399,
+          "end": 423,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1278,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 423,
+          "end": 507,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1921,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 435,
+          "end": 495,
+          "duration": 60
+        },
+        {
+          "task_id": 1,
+          "op_id": 1923,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 495,
+          "end": 534,
+          "duration": 39
+        },
+        {
+          "task_id": 1,
+          "op_id": 1280,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 507,
+          "end": 531,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1282,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 531,
+          "end": 615,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1925,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 534,
+          "end": 594,
+          "duration": 60
+        },
+        {
+          "task_id": 1,
+          "op_id": 1845,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 594,
+          "end": 699,
+          "duration": 105
+        },
+        {
+          "task_id": 1,
+          "op_id": 1284,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 615,
+          "end": 639,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1286,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 639,
+          "end": 723,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1849,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 699,
+          "end": 804,
+          "duration": 105
+        },
+        {
+          "task_id": 1,
+          "op_id": 1288,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 723,
+          "end": 747,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1290,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 747,
+          "end": 831,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1805,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 804,
+          "end": 1267,
+          "duration": 463
+        },
+        {
+          "task_id": 1,
+          "op_id": 1292,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 831,
+          "end": 855,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1294,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 855,
+          "end": 939,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1296,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 939,
+          "end": 963,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1298,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 963,
+          "end": 1047,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1300,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 1047,
+          "end": 1071,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1302,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 1071,
+          "end": 1155,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1304,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 1155,
+          "end": 1179,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1306,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 1179,
+          "end": 1263,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1308,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 1263,
+          "end": 1287,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1821,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 1267,
+          "end": 1384,
+          "duration": 117
+        },
+        {
+          "task_id": 1,
+          "op_id": 1310,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 1287,
+          "end": 1371,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1312,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 1371,
+          "end": 1395,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1809,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 1384,
+          "end": 1846,
+          "duration": 462
+        },
+        {
+          "task_id": 1,
+          "op_id": 1314,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 1395,
+          "end": 1479,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1316,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 1479,
+          "end": 1503,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1318,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 1503,
+          "end": 1587,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1320,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 1587,
+          "end": 1611,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1322,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 1611,
+          "end": 1695,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1324,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 1695,
+          "end": 1719,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1326,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 1719,
+          "end": 1803,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1328,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 1803,
+          "end": 1827,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1330,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 1827,
+          "end": 1911,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1813,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 1846,
+          "end": 2308,
+          "duration": 462
+        },
+        {
+          "task_id": 1,
+          "op_id": 1332,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 1911,
+          "end": 1935,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1334,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 1935,
+          "end": 2019,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1336,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 2019,
+          "end": 2043,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1338,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 2043,
+          "end": 2127,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1340,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 2127,
+          "end": 2151,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1342,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 2151,
+          "end": 2235,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1344,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 2235,
+          "end": 2259,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1346,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 2259,
+          "end": 2343,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1751,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 2308,
+          "end": 2425,
+          "duration": 117
+        },
+        {
+          "task_id": 1,
+          "op_id": 1348,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 2343,
+          "end": 2367,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1350,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 2367,
+          "end": 2451,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1753,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 2425,
+          "end": 2542,
+          "duration": 117
+        },
+        {
+          "task_id": 1,
+          "op_id": 1352,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 2451,
+          "end": 2475,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1354,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 2475,
+          "end": 2559,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1757,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 2542,
+          "end": 2545,
+          "duration": 3
+        },
+        {
+          "task_id": 1,
+          "op_id": 1755,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 2545,
+          "end": 2662,
+          "duration": 117
+        },
+        {
+          "task_id": 1,
+          "op_id": 1356,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 2559,
+          "end": 2583,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1358,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 2583,
+          "end": 2667,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1360,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 2667,
+          "end": 2691,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1362,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 2691,
+          "end": 2775,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1364,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 2775,
+          "end": 2799,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1841,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 2775,
+          "end": 2880,
+          "duration": 105
+        },
+        {
+          "task_id": 1,
+          "op_id": 1366,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 2799,
+          "end": 2883,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1689,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 2880,
+          "end": 3054,
+          "duration": 174
+        },
+        {
+          "task_id": 1,
+          "op_id": 1368,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 2883,
+          "end": 2907,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1370,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 2907,
+          "end": 2991,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1372,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 2991,
+          "end": 3015,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1374,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 3015,
+          "end": 3099,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1705,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 3054,
+          "end": 3084,
+          "duration": 30
+        },
+        {
+          "task_id": 1,
+          "op_id": 1695,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 3084,
+          "end": 3258,
+          "duration": 174
+        },
+        {
+          "task_id": 1,
+          "op_id": 1376,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 3099,
+          "end": 3123,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1384,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 3099,
+          "end": 3183,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1386,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 3183,
+          "end": 3207,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1388,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 3207,
+          "end": 3291,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1701,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 3258,
+          "end": 3432,
+          "duration": 174
+        },
+        {
+          "task_id": 1,
+          "op_id": 1390,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 3291,
+          "end": 3315,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1392,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 3315,
+          "end": 3399,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1394,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 3399,
+          "end": 3423,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1396,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 3423,
+          "end": 3507,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1833,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 3432,
+          "end": 3549,
+          "duration": 117
+        },
+        {
+          "task_id": 1,
+          "op_id": 1398,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 3507,
+          "end": 3531,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1406,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 3507,
+          "end": 3591,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1488,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 3531,
+          "end": 3555,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1759,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 3549,
+          "end": 3666,
+          "duration": 117
+        },
+        {
+          "task_id": 1,
+          "op_id": 1408,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 3591,
+          "end": 3615,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1410,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 3615,
+          "end": 3699,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1761,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 3666,
+          "end": 3783,
+          "duration": 117
+        },
+        {
+          "task_id": 1,
+          "op_id": 1412,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 3699,
+          "end": 3723,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1414,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 3723,
+          "end": 3807,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1416,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 3807,
+          "end": 3831,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1418,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 3831,
+          "end": 3915,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1420,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 3915,
+          "end": 3939,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1428,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 3915,
+          "end": 3999,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1430,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 3999,
+          "end": 4023,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1432,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 4023,
+          "end": 4107,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1434,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 4107,
+          "end": 4131,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1436,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 4131,
+          "end": 4215,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1438,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 4215,
+          "end": 4239,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1440,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 4239,
+          "end": 4323,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1442,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 4323,
+          "end": 4347,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1450,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 4323,
+          "end": 4407,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1490,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 4347,
+          "end": 4371,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1494,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 4371,
+          "end": 4395,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1452,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 4407,
+          "end": 4431,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1454,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 4431,
+          "end": 4515,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1456,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 4515,
+          "end": 4539,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1458,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 4539,
+          "end": 4623,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1460,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 4623,
+          "end": 4647,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1462,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 4647,
+          "end": 4731,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1464,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 4731,
+          "end": 4755,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1472,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 4731,
+          "end": 4815,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1474,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 4815,
+          "end": 4839,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1476,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 4839,
+          "end": 4923,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1478,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 4923,
+          "end": 4947,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1480,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 4947,
+          "end": 5031,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 1482,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 5031,
+          "end": 5055,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1484,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 5055,
+          "end": 5139,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 689,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 5139,
+          "end": 6015,
+          "duration": 876
+        },
+        {
+          "task_id": 1,
+          "op_id": 1486,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 5139,
+          "end": 5163,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1492,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 5163,
+          "end": 5187,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1496,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 5187,
+          "end": 5211,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1498,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 5211,
+          "end": 5235,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1500,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 5235,
+          "end": 5248,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 1536,
+          "op": "SIGMOID",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 5248,
+          "end": 5261,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 917,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 5261,
+          "end": 5305,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 1939,
+          "op": "COPY_OUT",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE3",
+          "start": 5261,
+          "end": 5263,
+          "duration": 2
+        },
+        {
+          "task_id": 1,
+          "op_id": 919,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 5305,
+          "end": 5349,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 921,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 5349,
+          "end": 5393,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 923,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 5393,
+          "end": 5437,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 925,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 5437,
+          "end": 5481,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 927,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 5481,
+          "end": 5525,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 929,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 5525,
+          "end": 5569,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 931,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 5569,
+          "end": 5613,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 933,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 5613,
+          "end": 5657,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 935,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 5657,
+          "end": 5701,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 937,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 5701,
+          "end": 5745,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 939,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 5745,
+          "end": 5789,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 941,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 5789,
+          "end": 5833,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 943,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 5833,
+          "end": 5877,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 1765,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 5833,
+          "end": 5835,
+          "duration": 2
+        },
+        {
+          "task_id": 1,
+          "op_id": 1763,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 5835,
+          "end": 5913,
+          "duration": 78
+        },
+        {
+          "task_id": 1,
+          "op_id": 949,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 5877,
+          "end": 5921,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 1775,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 5913,
+          "end": 5991,
+          "duration": 78
+        },
+        {
+          "task_id": 1,
+          "op_id": 947,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 5921,
+          "end": 5965,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 945,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 5965,
+          "end": 6009,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 1777,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 5991,
+          "end": 6070,
+          "duration": 79
+        },
+        {
+          "task_id": 1,
+          "op_id": 951,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 6009,
+          "end": 6053,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 691,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 6015,
+          "end": 6891,
+          "duration": 876
+        },
+        {
+          "task_id": 1,
+          "op_id": 953,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 6053,
+          "end": 6097,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 1073,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 6097,
+          "end": 6141,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 1781,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 6097,
+          "end": 6099,
+          "duration": 2
+        },
+        {
+          "task_id": 1,
+          "op_id": 1779,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 6099,
+          "end": 6178,
+          "duration": 79
+        },
+        {
+          "task_id": 1,
+          "op_id": 979,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 6141,
+          "end": 6185,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 1857,
+          "op": "COPY_OUT",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE3",
+          "start": 6141,
+          "end": 6144,
+          "duration": 3
+        },
+        {
+          "task_id": 1,
+          "op_id": 1791,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 6178,
+          "end": 6256,
+          "duration": 78
+        },
+        {
+          "task_id": 1,
+          "op_id": 981,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 6185,
+          "end": 6229,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 983,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 6229,
+          "end": 6273,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 1793,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 6256,
+          "end": 6334,
+          "duration": 78
+        },
+        {
+          "task_id": 1,
+          "op_id": 985,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 6273,
+          "end": 6317,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 987,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 6317,
+          "end": 6361,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 989,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 6361,
+          "end": 6405,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 991,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 6405,
+          "end": 6449,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 993,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 6449,
+          "end": 6493,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 995,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 6493,
+          "end": 6537,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 1001,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 6537,
+          "end": 6581,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 999,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 6581,
+          "end": 6625,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 1003,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 6625,
+          "end": 6669,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 1797,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 6625,
+          "end": 6627,
+          "duration": 2
+        },
+        {
+          "task_id": 1,
+          "op_id": 1795,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 6627,
+          "end": 6705,
+          "duration": 78
+        },
+        {
+          "task_id": 1,
+          "op_id": 997,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 6669,
+          "end": 6713,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 1865,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 6705,
+          "end": 6822,
+          "duration": 117
+        },
+        {
+          "task_id": 1,
+          "op_id": 1005,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 6713,
+          "end": 6757,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 1077,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 6757,
+          "end": 6801,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 693,
+          "op": "SIGMOID",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 6801,
+          "end": 7245,
+          "duration": 444
+        },
+        {
+          "task_id": 1,
+          "op_id": 1891,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 6822,
+          "end": 6848,
+          "duration": 26
+        },
+        {
+          "task_id": 1,
+          "op_id": 1871,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 6848,
+          "end": 6964,
+          "duration": 116
+        },
+        {
+          "task_id": 1,
+          "op_id": 1877,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 6964,
+          "end": 7068,
+          "duration": 104
+        },
+        {
+          "task_id": 1,
+          "op_id": 695,
+          "op": "MUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 7245,
+          "end": 7329,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 697,
+          "op": "MUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 7329,
+          "end": 7413,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 699,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 7413,
+          "end": 8289,
+          "duration": 876
+        },
+        {
+          "task_id": 1,
+          "op_id": 456,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 8289,
+          "end": 8733,
+          "duration": 444
+        },
+        {
+          "task_id": 1,
+          "op_id": 701,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 8289,
+          "end": 8337,
+          "duration": 48
+        },
+        {
+          "task_id": 1,
+          "op_id": 1853,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 8289,
+          "end": 8324,
+          "duration": 35
+        },
+        {
+          "task_id": 1,
+          "op_id": 1825,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 8324,
+          "end": 8363,
+          "duration": 39
+        },
+        {
+          "task_id": 1,
+          "op_id": 830,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 8337,
+          "end": 8385,
+          "duration": 48
+        },
+        {
+          "task_id": 1,
+          "op_id": 1711,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 8363,
+          "end": 8373,
+          "duration": 10
+        },
+        {
+          "task_id": 1,
+          "op_id": 1823,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 8373,
+          "end": 8412,
+          "duration": 39
+        },
+        {
+          "task_id": 1,
+          "op_id": 832,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 8385,
+          "end": 8399,
+          "duration": 14
+        },
+        {
+          "task_id": 1,
+          "op_id": 1502,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 8399,
+          "end": 8412,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 1881,
+          "op": "COPY_IN",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE2",
+          "start": 8412,
+          "end": 8426,
+          "duration": 14
+        },
+        {
+          "task_id": 1,
+          "op_id": 1927,
+          "op": "COPY_OUT",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE3",
+          "start": 8412,
+          "end": 8414,
+          "duration": 2
+        },
+        {
+          "task_id": 1,
+          "op_id": 461,
+          "op": "DIV",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 8733,
+          "end": 9033,
+          "duration": 300
+        },
+        {
+          "task_id": 1,
+          "op_id": 463,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 9033,
+          "end": 9117,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 465,
+          "op": "SUB",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 9117,
+          "end": 9201,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 467,
+          "op": "EXP",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 9201,
+          "end": 9501,
+          "duration": 300
+        },
+        {
+          "task_id": 1,
+          "op_id": 469,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 9501,
+          "end": 9585,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 471,
+          "op": "DIV",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 9585,
+          "end": 9885,
+          "duration": 300
+        },
+        {
+          "task_id": 1,
+          "op_id": 473,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 9885,
+          "end": 10329,
+          "duration": 444
+        },
+        {
+          "task_id": 1,
+          "op_id": 13,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 10329,
+          "end": 10503,
+          "duration": 174
+        },
+        {
+          "task_id": 1,
+          "op_id": 619,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 10329,
+          "end": 10377,
+          "duration": 48
+        },
+        {
+          "task_id": 1,
+          "op_id": 621,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 10377,
+          "end": 10390,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 865,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 10390,
+          "end": 10434,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 867,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 10434,
+          "end": 10478,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 869,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 10478,
+          "end": 10522,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 15,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 10503,
+          "end": 10677,
+          "duration": 174
+        },
+        {
+          "task_id": 1,
+          "op_id": 871,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 10522,
+          "end": 10566,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 873,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 10566,
+          "end": 10610,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 875,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 10610,
+          "end": 10654,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 879,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 10654,
+          "end": 10698,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 877,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 10698,
+          "end": 10742,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 881,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 10742,
+          "end": 10786,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 1069,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 10786,
+          "end": 10830,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 1506,
+          "op": "MUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 10830,
+          "end": 10843,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 1608,
+          "op": "SIGMOID",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 10843,
+          "end": 10856,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 1610,
+          "op": "NEG",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 10856,
+          "end": 10869,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 1612,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 10869,
+          "end": 10882,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 17,
+          "op": "SIGMOID",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 10882,
+          "end": 11056,
+          "duration": 174
+        },
+        {
+          "task_id": 1,
+          "op_id": 1973,
+          "op": "COPY_OUT",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE3",
+          "start": 10882,
+          "end": 10883,
+          "duration": 1
+        },
+        {
+          "task_id": 1,
+          "op_id": 19,
+          "op": "MUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 11056,
+          "end": 11095,
+          "duration": 39
+        },
+        {
+          "task_id": 1,
+          "op_id": 21,
+          "op": "MUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 11095,
+          "end": 11134,
+          "duration": 39
+        },
+        {
+          "task_id": 1,
+          "op_id": 23,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 11134,
+          "end": 11308,
+          "duration": 174
+        },
+        {
+          "task_id": 1,
+          "op_id": 25,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 11308,
+          "end": 11329,
+          "duration": 21
+        },
+        {
+          "task_id": 1,
+          "op_id": 791,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 11308,
+          "end": 12184,
+          "duration": 876
+        },
+        {
+          "task_id": 1,
+          "op_id": 95,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 11329,
+          "end": 11350,
+          "duration": 21
+        },
+        {
+          "task_id": 1,
+          "op_id": 97,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 11350,
+          "end": 11363,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 1526,
+          "op": "NEG",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 11363,
+          "end": 11376,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 1528,
+          "op": "SIGMOID",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 11376,
+          "end": 11389,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 1530,
+          "op": "NEG",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 11389,
+          "end": 11402,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 1532,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 11402,
+          "end": 11415,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 1935,
+          "op": "COPY_OUT",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE3",
+          "start": 11415,
+          "end": 11416,
+          "duration": 1
+        },
+        {
+          "task_id": 1,
+          "op_id": 793,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 12184,
+          "end": 13060,
+          "duration": 876
+        },
+        {
+          "task_id": 1,
+          "op_id": 795,
+          "op": "SIGMOID",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 12184,
+          "end": 12628,
+          "duration": 444
+        },
+        {
+          "task_id": 1,
+          "op_id": 797,
+          "op": "MUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 12628,
+          "end": 12712,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 799,
+          "op": "MUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 13060,
+          "end": 13144,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 801,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 13144,
+          "end": 14020,
+          "duration": 876
+        },
+        {
+          "task_id": 1,
+          "op_id": 484,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 14020,
+          "end": 14464,
+          "duration": 444
+        },
+        {
+          "task_id": 1,
+          "op_id": 803,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 14020,
+          "end": 14068,
+          "duration": 48
+        },
+        {
+          "task_id": 1,
+          "op_id": 854,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 14068,
+          "end": 14116,
+          "duration": 48
+        },
+        {
+          "task_id": 1,
+          "op_id": 856,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 14116,
+          "end": 14130,
+          "duration": 14
+        },
+        {
+          "task_id": 1,
+          "op_id": 1548,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 14130,
+          "end": 14143,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 1550,
+          "op": "NEG",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 14143,
+          "end": 14156,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 1552,
+          "op": "NEG",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 14156,
+          "end": 14169,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 1945,
+          "op": "COPY_OUT",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE3",
+          "start": 14169,
+          "end": 14170,
+          "duration": 1
+        },
+        {
+          "task_id": 1,
+          "op_id": 489,
+          "op": "DIV",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 14464,
+          "end": 14764,
+          "duration": 300
+        },
+        {
+          "task_id": 1,
+          "op_id": 491,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 14764,
+          "end": 14848,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 493,
+          "op": "SUB",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 14848,
+          "end": 14932,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 495,
+          "op": "EXP",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 14932,
+          "end": 15232,
+          "duration": 300
+        },
+        {
+          "task_id": 1,
+          "op_id": 497,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 15232,
+          "end": 15316,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 499,
+          "op": "DIV",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 15316,
+          "end": 15616,
+          "duration": 300
+        },
+        {
+          "task_id": 1,
+          "op_id": 501,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 15616,
+          "end": 16060,
+          "duration": 444
+        },
+        {
+          "task_id": 1,
+          "op_id": 540,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 16060,
+          "end": 16504,
+          "duration": 444
+        },
+        {
+          "task_id": 1,
+          "op_id": 623,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 16060,
+          "end": 16108,
+          "duration": 48
+        },
+        {
+          "task_id": 1,
+          "op_id": 625,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 16108,
+          "end": 16121,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 1570,
+          "op": "NEG",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 16121,
+          "end": 16134,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 1953,
+          "op": "COPY_OUT",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE3",
+          "start": 16134,
+          "end": 16135,
+          "duration": 1
+        },
+        {
+          "task_id": 1,
+          "op_id": 545,
+          "op": "DIV",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 16504,
+          "end": 16804,
+          "duration": 300
+        },
+        {
+          "task_id": 1,
+          "op_id": 547,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 16804,
+          "end": 16888,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 549,
+          "op": "SUB",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 16888,
+          "end": 16972,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 551,
+          "op": "EXP",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 16972,
+          "end": 17272,
+          "duration": 300
+        },
+        {
+          "task_id": 1,
+          "op_id": 553,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 17272,
+          "end": 17356,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 555,
+          "op": "DIV",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 17356,
+          "end": 17656,
+          "duration": 300
+        },
+        {
+          "task_id": 1,
+          "op_id": 557,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 17656,
+          "end": 18100,
+          "duration": 444
+        },
+        {
+          "task_id": 1,
+          "op_id": 596,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 18100,
+          "end": 18544,
+          "duration": 444
+        },
+        {
+          "task_id": 1,
+          "op_id": 631,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 18100,
+          "end": 18148,
+          "duration": 48
+        },
+        {
+          "task_id": 1,
+          "op_id": 633,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 18148,
+          "end": 18161,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 1799,
+          "op": "COPY_OUT",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE3",
+          "start": 18161,
+          "end": 18162,
+          "duration": 1
+        },
+        {
+          "task_id": 1,
+          "op_id": 601,
+          "op": "DIV",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 18544,
+          "end": 18844,
+          "duration": 300
+        },
+        {
+          "task_id": 1,
+          "op_id": 603,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 18844,
+          "end": 18928,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 605,
+          "op": "SUB",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 18928,
+          "end": 19012,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 607,
+          "op": "EXP",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 19012,
+          "end": 19312,
+          "duration": 300
+        },
+        {
+          "task_id": 1,
+          "op_id": 609,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 19312,
+          "end": 19396,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 611,
+          "op": "DIV",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 19396,
+          "end": 19696,
+          "duration": 300
+        },
+        {
+          "task_id": 1,
+          "op_id": 613,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 19696,
+          "end": 20140,
+          "duration": 444
+        },
+        {
+          "task_id": 1,
+          "op_id": 639,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 20140,
+          "end": 20188,
+          "duration": 48
+        },
+        {
+          "task_id": 1,
+          "op_id": 1180,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 20140,
+          "end": 20368,
+          "duration": 228
+        },
+        {
+          "task_id": 1,
+          "op_id": 641,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 20188,
+          "end": 20201,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 1803,
+          "op": "COPY_OUT",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE3",
+          "start": 20201,
+          "end": 20202,
+          "duration": 1
+        },
+        {
+          "task_id": 1,
+          "op_id": 1182,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 20368,
+          "end": 20596,
+          "duration": 228
+        },
+        {
+          "task_id": 1,
+          "op_id": 1184,
+          "op": "SIGMOID",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 20368,
+          "end": 20596,
+          "duration": 228
+        },
+        {
+          "task_id": 1,
+          "op_id": 1186,
+          "op": "MUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 20596,
+          "end": 20644,
+          "duration": 48
+        },
+        {
+          "task_id": 1,
+          "op_id": 1188,
+          "op": "MUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 20644,
+          "end": 20692,
+          "duration": 48
+        },
+        {
+          "task_id": 1,
+          "op_id": 1190,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 20692,
+          "end": 20920,
+          "duration": 228
+        },
+        {
+          "task_id": 1,
+          "op_id": 723,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 20920,
+          "end": 21796,
+          "duration": 876
+        },
+        {
+          "task_id": 1,
+          "op_id": 1192,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 20920,
+          "end": 20944,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1248,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 20944,
+          "end": 20968,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1250,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 20968,
+          "end": 20981,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 1514,
+          "op": "SIGMOID",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 20981,
+          "end": 20994,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 1516,
+          "op": "SIGMOID",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 20994,
+          "end": 21007,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 1051,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 21007,
+          "end": 21051,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 1931,
+          "op": "COPY_OUT",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE3",
+          "start": 21007,
+          "end": 21008,
+          "duration": 1
+        },
+        {
+          "task_id": 1,
+          "op_id": 1053,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 21051,
+          "end": 21095,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 1055,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 21095,
+          "end": 21139,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 1057,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 21139,
+          "end": 21183,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 1059,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 21183,
+          "end": 21227,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 1061,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 21227,
+          "end": 21271,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 1065,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 21271,
+          "end": 21315,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 1063,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 21315,
+          "end": 21359,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 1067,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 21359,
+          "end": 21403,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 1081,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 21403,
+          "end": 21447,
+          "duration": 44
+        },
+        {
+          "task_id": 1,
+          "op_id": 1538,
+          "op": "NEG",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 21447,
+          "end": 21460,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 1941,
+          "op": "COPY_OUT",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE3",
+          "start": 21460,
+          "end": 21461,
+          "duration": 1
+        },
+        {
+          "task_id": 1,
+          "op_id": 725,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 21796,
+          "end": 22672,
+          "duration": 876
+        },
+        {
+          "task_id": 1,
+          "op_id": 727,
+          "op": "SIGMOID",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 21796,
+          "end": 22240,
+          "duration": 444
+        },
+        {
+          "task_id": 1,
+          "op_id": 729,
+          "op": "MUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 22240,
+          "end": 22324,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 731,
+          "op": "MUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 22672,
+          "end": 22756,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 733,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 22756,
+          "end": 23632,
+          "duration": 876
+        },
+        {
+          "task_id": 1,
+          "op_id": 64,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 23632,
+          "end": 23806,
+          "duration": 174
+        },
+        {
+          "task_id": 1,
+          "op_id": 735,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 23632,
+          "end": 23680,
+          "duration": 48
+        },
+        {
+          "task_id": 1,
+          "op_id": 838,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 23680,
+          "end": 23728,
+          "duration": 48
+        },
+        {
+          "task_id": 1,
+          "op_id": 840,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 23728,
+          "end": 23742,
+          "duration": 14
+        },
+        {
+          "task_id": 1,
+          "op_id": 1578,
+          "op": "SIGMOID",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 23742,
+          "end": 23755,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 1580,
+          "op": "SIGMOID",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 23755,
+          "end": 23768,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 1957,
+          "op": "COPY_OUT",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE3",
+          "start": 23768,
+          "end": 23769,
+          "duration": 1
+        },
+        {
+          "task_id": 1,
+          "op_id": 66,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 23806,
+          "end": 23980,
+          "duration": 174
+        },
+        {
+          "task_id": 1,
+          "op_id": 68,
+          "op": "SIGMOID",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 23806,
+          "end": 23980,
+          "duration": 174
+        },
+        {
+          "task_id": 1,
+          "op_id": 70,
+          "op": "MUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 23980,
+          "end": 24019,
+          "duration": 39
+        },
+        {
+          "task_id": 1,
+          "op_id": 72,
+          "op": "MUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 24019,
+          "end": 24058,
+          "duration": 39
+        },
+        {
+          "task_id": 1,
+          "op_id": 74,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 24058,
+          "end": 24232,
+          "duration": 174
+        },
+        {
+          "task_id": 1,
+          "op_id": 76,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 24232,
+          "end": 24253,
+          "duration": 21
+        },
+        {
+          "task_id": 1,
+          "op_id": 706,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 24232,
+          "end": 25108,
+          "duration": 876
+        },
+        {
+          "task_id": 1,
+          "op_id": 107,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 24253,
+          "end": 24274,
+          "duration": 21
+        },
+        {
+          "task_id": 1,
+          "op_id": 109,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 24274,
+          "end": 24287,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 1584,
+          "op": "SIGMOID",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 24287,
+          "end": 24300,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 1586,
+          "op": "RELU",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 24300,
+          "end": 24313,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 1961,
+          "op": "COPY_OUT",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE3",
+          "start": 24313,
+          "end": 24314,
+          "duration": 1
+        },
+        {
+          "task_id": 1,
+          "op_id": 708,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 25108,
+          "end": 25984,
+          "duration": 876
+        },
+        {
+          "task_id": 1,
+          "op_id": 710,
+          "op": "SIGMOID",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 25108,
+          "end": 25552,
+          "duration": 444
+        },
+        {
+          "task_id": 1,
+          "op_id": 712,
+          "op": "MUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 25552,
+          "end": 25636,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 714,
+          "op": "MUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 25984,
+          "end": 26068,
+          "duration": 84
+        },
+        {
+          "task_id": 1,
+          "op_id": 716,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 26068,
+          "end": 26944,
+          "duration": 876
+        },
+        {
+          "task_id": 1,
+          "op_id": 718,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 26944,
+          "end": 26992,
+          "duration": 48
+        },
+        {
+          "task_id": 1,
+          "op_id": 1095,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 26944,
+          "end": 27172,
+          "duration": 228
+        },
+        {
+          "task_id": 1,
+          "op_id": 834,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 26992,
+          "end": 27040,
+          "duration": 48
+        },
+        {
+          "task_id": 1,
+          "op_id": 836,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 27040,
+          "end": 27054,
+          "duration": 14
+        },
+        {
+          "task_id": 1,
+          "op_id": 1837,
+          "op": "COPY_OUT",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE3",
+          "start": 27054,
+          "end": 27055,
+          "duration": 1
+        },
+        {
+          "task_id": 1,
+          "op_id": 1097,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 27172,
+          "end": 27400,
+          "duration": 228
+        },
+        {
+          "task_id": 1,
+          "op_id": 1099,
+          "op": "SIGMOID",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 27172,
+          "end": 27400,
+          "duration": 228
+        },
+        {
+          "task_id": 1,
+          "op_id": 1101,
+          "op": "MUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 27400,
+          "end": 27448,
+          "duration": 48
+        },
+        {
+          "task_id": 1,
+          "op_id": 1103,
+          "op": "MUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 27448,
+          "end": 27496,
+          "duration": 48
+        },
+        {
+          "task_id": 1,
+          "op_id": 1105,
+          "op": "MATMUL",
+          "subgraph_id": 1,
+          "pipe": "PIPE_M",
+          "start": 27496,
+          "end": 27724,
+          "duration": 228
+        },
+        {
+          "task_id": 1,
+          "op_id": 1107,
+          "op": "ADD",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 27724,
+          "end": 27748,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1228,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 27748,
+          "end": 27772,
+          "duration": 24
+        },
+        {
+          "task_id": 1,
+          "op_id": 1230,
+          "op": "REDUCE",
+          "subgraph_id": 1,
+          "pipe": "PIPE_V",
+          "start": 27772,
+          "end": 27785,
+          "duration": 13
+        },
+        {
+          "task_id": 1,
+          "op_id": 1897,
+          "op": "COPY_OUT",
+          "subgraph_id": 1,
+          "pipe": "PIPE_MTE3",
+          "start": 27785,
+          "end": 27786,
+          "duration": 1
+        }
+      ]
+    },
+    {
+      "core_id": 2,
+      "tasks": [
+        {
+          "task_id": 2,
+          "subgraph_ids": [
+            2
+          ],
+          "start": 0,
+          "end": 27663,
+          "duration": 27663
+        }
+      ],
+      "subgraphs": [
+        {
+          "subgraph_id": 2,
+          "start": 0,
+          "end": 27663,
+          "duration": 27663
+        }
+      ],
+      "ops": [
+        {
+          "task_id": 2,
+          "op_id": 1851,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 0,
+          "end": 105,
+          "duration": 105
+        },
+        {
+          "task_id": 2,
+          "op_id": 1010,
+          "op": "RELU",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 105,
+          "end": 149,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 1743,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 105,
+          "end": 222,
+          "duration": 117
+        },
+        {
+          "task_id": 2,
+          "op_id": 1012,
+          "op": "RELU",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 149,
+          "end": 193,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 1014,
+          "op": "RELU",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 193,
+          "end": 237,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 1745,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 222,
+          "end": 339,
+          "duration": 117
+        },
+        {
+          "task_id": 2,
+          "op_id": 1016,
+          "op": "ADD",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 237,
+          "end": 281,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 1018,
+          "op": "RELU",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 281,
+          "end": 325,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 1020,
+          "op": "RELU",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 325,
+          "end": 369,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 428,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 339,
+          "end": 783,
+          "duration": 444
+        },
+        {
+          "task_id": 2,
+          "op_id": 1749,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 339,
+          "end": 342,
+          "duration": 3
+        },
+        {
+          "task_id": 2,
+          "op_id": 1747,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 342,
+          "end": 459,
+          "duration": 117
+        },
+        {
+          "task_id": 2,
+          "op_id": 1022,
+          "op": "RELU",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 369,
+          "end": 413,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 1024,
+          "op": "ADD",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 413,
+          "end": 457,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 1026,
+          "op": "RELU",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 457,
+          "end": 501,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 1691,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 459,
+          "end": 633,
+          "duration": 174
+        },
+        {
+          "task_id": 2,
+          "op_id": 1028,
+          "op": "RELU",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 501,
+          "end": 545,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 1030,
+          "op": "RELU",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 545,
+          "end": 589,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 1032,
+          "op": "ADD",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 589,
+          "end": 633,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 1034,
+          "op": "RELU",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 633,
+          "end": 677,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 1713,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 633,
+          "end": 663,
+          "duration": 30
+        },
+        {
+          "task_id": 2,
+          "op_id": 1697,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 663,
+          "end": 837,
+          "duration": 174
+        },
+        {
+          "task_id": 2,
+          "op_id": 1036,
+          "op": "RELU",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 677,
+          "end": 721,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 1042,
+          "op": "ADD",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 721,
+          "end": 765,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 1040,
+          "op": "ADD",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 765,
+          "end": 809,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 1038,
+          "op": "ADD",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 809,
+          "end": 853,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 1703,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 837,
+          "end": 1012,
+          "duration": 175
+        },
+        {
+          "task_id": 2,
+          "op_id": 1044,
+          "op": "ADD",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 853,
+          "end": 897,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 1046,
+          "op": "ADD",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 897,
+          "end": 941,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 1079,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 941,
+          "end": 985,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 433,
+          "op": "DIV",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 985,
+          "end": 1285,
+          "duration": 300
+        },
+        {
+          "task_id": 2,
+          "op_id": 1861,
+          "op": "COPY_OUT",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE3",
+          "start": 985,
+          "end": 989,
+          "duration": 4
+        },
+        {
+          "task_id": 2,
+          "op_id": 1807,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 1012,
+          "end": 1474,
+          "duration": 462
+        },
+        {
+          "task_id": 2,
+          "op_id": 435,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 1285,
+          "end": 1369,
+          "duration": 84
+        },
+        {
+          "task_id": 2,
+          "op_id": 437,
+          "op": "SUB",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 1369,
+          "end": 1453,
+          "duration": 84
+        },
+        {
+          "task_id": 2,
+          "op_id": 439,
+          "op": "EXP",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 1453,
+          "end": 1753,
+          "duration": 300
+        },
+        {
+          "task_id": 2,
+          "op_id": 1827,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 1474,
+          "end": 1591,
+          "duration": 117
+        },
+        {
+          "task_id": 2,
+          "op_id": 1811,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 1591,
+          "end": 2053,
+          "duration": 462
+        },
+        {
+          "task_id": 2,
+          "op_id": 441,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 1753,
+          "end": 1837,
+          "duration": 84
+        },
+        {
+          "task_id": 2,
+          "op_id": 443,
+          "op": "DIV",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 1837,
+          "end": 2137,
+          "duration": 300
+        },
+        {
+          "task_id": 2,
+          "op_id": 1815,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 2053,
+          "end": 2515,
+          "duration": 462
+        },
+        {
+          "task_id": 2,
+          "op_id": 445,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 2137,
+          "end": 2581,
+          "duration": 444
+        },
+        {
+          "task_id": 2,
+          "op_id": 1867,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 2515,
+          "end": 2680,
+          "duration": 165
+        },
+        {
+          "task_id": 2,
+          "op_id": 81,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 2581,
+          "end": 2755,
+          "duration": 174
+        },
+        {
+          "task_id": 2,
+          "op_id": 615,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 2581,
+          "end": 2629,
+          "duration": 48
+        },
+        {
+          "task_id": 2,
+          "op_id": 617,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 2629,
+          "end": 2642,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1572,
+          "op": "NEG",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 2642,
+          "end": 2655,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1574,
+          "op": "NEG",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 2655,
+          "end": 2668,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1576,
+          "op": "NEG",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 2668,
+          "end": 2681,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1887,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 2680,
+          "end": 2707,
+          "duration": 27
+        },
+        {
+          "task_id": 2,
+          "op_id": 1955,
+          "op": "COPY_OUT",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE3",
+          "start": 2681,
+          "end": 2684,
+          "duration": 3
+        },
+        {
+          "task_id": 2,
+          "op_id": 1873,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 2707,
+          "end": 2847,
+          "duration": 140
+        },
+        {
+          "task_id": 2,
+          "op_id": 83,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 2755,
+          "end": 2929,
+          "duration": 174
+        },
+        {
+          "task_id": 2,
+          "op_id": 85,
+          "op": "SIGMOID",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 2755,
+          "end": 2929,
+          "duration": 174
+        },
+        {
+          "task_id": 2,
+          "op_id": 1879,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 2847,
+          "end": 3021,
+          "duration": 174
+        },
+        {
+          "task_id": 2,
+          "op_id": 87,
+          "op": "MUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 2929,
+          "end": 2968,
+          "duration": 39
+        },
+        {
+          "task_id": 2,
+          "op_id": 89,
+          "op": "MUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 2968,
+          "end": 3007,
+          "duration": 39
+        },
+        {
+          "task_id": 2,
+          "op_id": 91,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 3007,
+          "end": 3181,
+          "duration": 174
+        },
+        {
+          "task_id": 2,
+          "op_id": 1817,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 3021,
+          "end": 3138,
+          "duration": 117
+        },
+        {
+          "task_id": 2,
+          "op_id": 1893,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 3138,
+          "end": 3177,
+          "duration": 39
+        },
+        {
+          "task_id": 2,
+          "op_id": 1835,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 3177,
+          "end": 3294,
+          "duration": 117
+        },
+        {
+          "task_id": 2,
+          "op_id": 93,
+          "op": "ADD",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 3181,
+          "end": 3202,
+          "duration": 21
+        },
+        {
+          "task_id": 2,
+          "op_id": 740,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 3181,
+          "end": 4057,
+          "duration": 876
+        },
+        {
+          "task_id": 2,
+          "op_id": 111,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 3202,
+          "end": 3223,
+          "duration": 21
+        },
+        {
+          "task_id": 2,
+          "op_id": 113,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 3223,
+          "end": 3236,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1767,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 3294,
+          "end": 3411,
+          "duration": 117
+        },
+        {
+          "task_id": 2,
+          "op_id": 1769,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 3411,
+          "end": 3528,
+          "duration": 117
+        },
+        {
+          "task_id": 2,
+          "op_id": 1773,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 3528,
+          "end": 3531,
+          "duration": 3
+        },
+        {
+          "task_id": 2,
+          "op_id": 1771,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 3531,
+          "end": 3648,
+          "duration": 117
+        },
+        {
+          "task_id": 2,
+          "op_id": 1783,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 3648,
+          "end": 3765,
+          "duration": 117
+        },
+        {
+          "task_id": 2,
+          "op_id": 1785,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 3765,
+          "end": 3849,
+          "duration": 84
+        },
+        {
+          "task_id": 2,
+          "op_id": 1789,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 3849,
+          "end": 3851,
+          "duration": 2
+        },
+        {
+          "task_id": 2,
+          "op_id": 1787,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 3851,
+          "end": 3929,
+          "duration": 78
+        },
+        {
+          "task_id": 2,
+          "op_id": 1829,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 3929,
+          "end": 4007,
+          "duration": 78
+        },
+        {
+          "task_id": 2,
+          "op_id": 1847,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 4007,
+          "end": 4077,
+          "duration": 70
+        },
+        {
+          "task_id": 2,
+          "op_id": 742,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 4057,
+          "end": 4933,
+          "duration": 876
+        },
+        {
+          "task_id": 2,
+          "op_id": 744,
+          "op": "SIGMOID",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 4057,
+          "end": 4501,
+          "duration": 444
+        },
+        {
+          "task_id": 2,
+          "op_id": 1885,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 4077,
+          "end": 4103,
+          "duration": 26
+        },
+        {
+          "task_id": 2,
+          "op_id": 1707,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 4103,
+          "end": 4123,
+          "duration": 20
+        },
+        {
+          "task_id": 2,
+          "op_id": 1819,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 4123,
+          "end": 4201,
+          "duration": 78
+        },
+        {
+          "task_id": 2,
+          "op_id": 1831,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 4201,
+          "end": 4279,
+          "duration": 78
+        },
+        {
+          "task_id": 2,
+          "op_id": 1895,
+          "op": "COPY_IN",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE2",
+          "start": 4279,
+          "end": 4305,
+          "duration": 26
+        },
+        {
+          "task_id": 2,
+          "op_id": 746,
+          "op": "MUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 4501,
+          "end": 4585,
+          "duration": 84
+        },
+        {
+          "task_id": 2,
+          "op_id": 748,
+          "op": "MUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 4933,
+          "end": 5017,
+          "duration": 84
+        },
+        {
+          "task_id": 2,
+          "op_id": 750,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 5017,
+          "end": 5893,
+          "duration": 876
+        },
+        {
+          "task_id": 2,
+          "op_id": 752,
+          "op": "ADD",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 5893,
+          "end": 5941,
+          "duration": 48
+        },
+        {
+          "task_id": 2,
+          "op_id": 1146,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 5893,
+          "end": 6121,
+          "duration": 228
+        },
+        {
+          "task_id": 2,
+          "op_id": 842,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 5941,
+          "end": 5989,
+          "duration": 48
+        },
+        {
+          "task_id": 2,
+          "op_id": 844,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 5989,
+          "end": 6003,
+          "duration": 14
+        },
+        {
+          "task_id": 2,
+          "op_id": 1504,
+          "op": "MUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 6003,
+          "end": 6016,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1600,
+          "op": "NEG",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 6016,
+          "end": 6029,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1602,
+          "op": "SIGMOID",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 6029,
+          "end": 6042,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1604,
+          "op": "SIGMOID",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 6042,
+          "end": 6055,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1606,
+          "op": "RELU",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 6055,
+          "end": 6068,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1971,
+          "op": "COPY_OUT",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE3",
+          "start": 6068,
+          "end": 6071,
+          "duration": 3
+        },
+        {
+          "task_id": 2,
+          "op_id": 1148,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 6121,
+          "end": 6349,
+          "duration": 228
+        },
+        {
+          "task_id": 2,
+          "op_id": 1150,
+          "op": "SIGMOID",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 6121,
+          "end": 6349,
+          "duration": 228
+        },
+        {
+          "task_id": 2,
+          "op_id": 1152,
+          "op": "MUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 6349,
+          "end": 6397,
+          "duration": 48
+        },
+        {
+          "task_id": 2,
+          "op_id": 1154,
+          "op": "MUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 6397,
+          "end": 6445,
+          "duration": 48
+        },
+        {
+          "task_id": 2,
+          "op_id": 1156,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 6445,
+          "end": 6673,
+          "duration": 228
+        },
+        {
+          "task_id": 2,
+          "op_id": 655,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 6673,
+          "end": 7549,
+          "duration": 876
+        },
+        {
+          "task_id": 2,
+          "op_id": 1158,
+          "op": "ADD",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 6673,
+          "end": 6697,
+          "duration": 24
+        },
+        {
+          "task_id": 2,
+          "op_id": 1240,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 6697,
+          "end": 6721,
+          "duration": 24
+        },
+        {
+          "task_id": 2,
+          "op_id": 1242,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 6721,
+          "end": 6734,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1518,
+          "op": "RELU",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 6734,
+          "end": 6747,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1520,
+          "op": "RELU",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 6747,
+          "end": 6760,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1522,
+          "op": "NEG",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 6760,
+          "end": 6773,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1524,
+          "op": "SIGMOID",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 6773,
+          "end": 6786,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1933,
+          "op": "COPY_OUT",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE3",
+          "start": 6786,
+          "end": 6789,
+          "duration": 3
+        },
+        {
+          "task_id": 2,
+          "op_id": 657,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 7549,
+          "end": 8425,
+          "duration": 876
+        },
+        {
+          "task_id": 2,
+          "op_id": 659,
+          "op": "SIGMOID",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 7549,
+          "end": 7993,
+          "duration": 444
+        },
+        {
+          "task_id": 2,
+          "op_id": 661,
+          "op": "MUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 7993,
+          "end": 8077,
+          "duration": 84
+        },
+        {
+          "task_id": 2,
+          "op_id": 663,
+          "op": "MUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 8425,
+          "end": 8509,
+          "duration": 84
+        },
+        {
+          "task_id": 2,
+          "op_id": 665,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 8509,
+          "end": 9385,
+          "duration": 876
+        },
+        {
+          "task_id": 2,
+          "op_id": 667,
+          "op": "ADD",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 9385,
+          "end": 9433,
+          "duration": 48
+        },
+        {
+          "task_id": 2,
+          "op_id": 1197,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 9385,
+          "end": 9613,
+          "duration": 228
+        },
+        {
+          "task_id": 2,
+          "op_id": 822,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 9433,
+          "end": 9481,
+          "duration": 48
+        },
+        {
+          "task_id": 2,
+          "op_id": 824,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 9481,
+          "end": 9495,
+          "duration": 14
+        },
+        {
+          "task_id": 2,
+          "op_id": 1540,
+          "op": "NEG",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 9495,
+          "end": 9508,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1542,
+          "op": "SIGMOID",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 9508,
+          "end": 9521,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1544,
+          "op": "NEG",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 9521,
+          "end": 9534,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1546,
+          "op": "SIGMOID",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 9534,
+          "end": 9547,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1943,
+          "op": "COPY_OUT",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE3",
+          "start": 9547,
+          "end": 9548,
+          "duration": 1
+        },
+        {
+          "task_id": 2,
+          "op_id": 1199,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 9613,
+          "end": 9841,
+          "duration": 228
+        },
+        {
+          "task_id": 2,
+          "op_id": 1201,
+          "op": "SIGMOID",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 9613,
+          "end": 9841,
+          "duration": 228
+        },
+        {
+          "task_id": 2,
+          "op_id": 1203,
+          "op": "MUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 9841,
+          "end": 9889,
+          "duration": 48
+        },
+        {
+          "task_id": 2,
+          "op_id": 1205,
+          "op": "MUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 9889,
+          "end": 9937,
+          "duration": 48
+        },
+        {
+          "task_id": 2,
+          "op_id": 1207,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 9937,
+          "end": 10165,
+          "duration": 228
+        },
+        {
+          "task_id": 2,
+          "op_id": 808,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 10165,
+          "end": 11041,
+          "duration": 876
+        },
+        {
+          "task_id": 2,
+          "op_id": 1209,
+          "op": "ADD",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 10165,
+          "end": 10189,
+          "duration": 24
+        },
+        {
+          "task_id": 2,
+          "op_id": 1252,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 10189,
+          "end": 10213,
+          "duration": 24
+        },
+        {
+          "task_id": 2,
+          "op_id": 1254,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 10213,
+          "end": 10226,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1554,
+          "op": "SIGMOID",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 10226,
+          "end": 10239,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1556,
+          "op": "NEG",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 10239,
+          "end": 10252,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1558,
+          "op": "SIGMOID",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 10252,
+          "end": 10265,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1560,
+          "op": "SIGMOID",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 10265,
+          "end": 10278,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1947,
+          "op": "COPY_OUT",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE3",
+          "start": 10278,
+          "end": 10279,
+          "duration": 1
+        },
+        {
+          "task_id": 2,
+          "op_id": 810,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 11041,
+          "end": 11917,
+          "duration": 876
+        },
+        {
+          "task_id": 2,
+          "op_id": 812,
+          "op": "SIGMOID",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 11041,
+          "end": 11485,
+          "duration": 444
+        },
+        {
+          "task_id": 2,
+          "op_id": 814,
+          "op": "MUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 11485,
+          "end": 11569,
+          "duration": 84
+        },
+        {
+          "task_id": 2,
+          "op_id": 816,
+          "op": "MUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 11917,
+          "end": 12001,
+          "duration": 84
+        },
+        {
+          "task_id": 2,
+          "op_id": 818,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 12001,
+          "end": 12877,
+          "duration": 876
+        },
+        {
+          "task_id": 2,
+          "op_id": 512,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 12877,
+          "end": 13321,
+          "duration": 444
+        },
+        {
+          "task_id": 2,
+          "op_id": 820,
+          "op": "ADD",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 12877,
+          "end": 12925,
+          "duration": 48
+        },
+        {
+          "task_id": 2,
+          "op_id": 858,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 12925,
+          "end": 12973,
+          "duration": 48
+        },
+        {
+          "task_id": 2,
+          "op_id": 860,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 12973,
+          "end": 12987,
+          "duration": 14
+        },
+        {
+          "task_id": 2,
+          "op_id": 1508,
+          "op": "SIGMOID",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 12987,
+          "end": 13000,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1510,
+          "op": "RELU",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 13000,
+          "end": 13013,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1512,
+          "op": "SIGMOID",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 13013,
+          "end": 13026,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1929,
+          "op": "COPY_OUT",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE3",
+          "start": 13026,
+          "end": 13027,
+          "duration": 1
+        },
+        {
+          "task_id": 2,
+          "op_id": 517,
+          "op": "DIV",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 13321,
+          "end": 13621,
+          "duration": 300
+        },
+        {
+          "task_id": 2,
+          "op_id": 519,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 13621,
+          "end": 13705,
+          "duration": 84
+        },
+        {
+          "task_id": 2,
+          "op_id": 521,
+          "op": "SUB",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 13705,
+          "end": 13789,
+          "duration": 84
+        },
+        {
+          "task_id": 2,
+          "op_id": 523,
+          "op": "EXP",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 13789,
+          "end": 14089,
+          "duration": 300
+        },
+        {
+          "task_id": 2,
+          "op_id": 525,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 14089,
+          "end": 14173,
+          "duration": 84
+        },
+        {
+          "task_id": 2,
+          "op_id": 527,
+          "op": "DIV",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 14173,
+          "end": 14473,
+          "duration": 300
+        },
+        {
+          "task_id": 2,
+          "op_id": 529,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 14473,
+          "end": 14917,
+          "duration": 444
+        },
+        {
+          "task_id": 2,
+          "op_id": 568,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 14917,
+          "end": 15361,
+          "duration": 444
+        },
+        {
+          "task_id": 2,
+          "op_id": 627,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 14917,
+          "end": 14965,
+          "duration": 48
+        },
+        {
+          "task_id": 2,
+          "op_id": 629,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 14965,
+          "end": 14978,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1588,
+          "op": "NEG",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 14978,
+          "end": 14991,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1963,
+          "op": "COPY_OUT",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE3",
+          "start": 14991,
+          "end": 14992,
+          "duration": 1
+        },
+        {
+          "task_id": 2,
+          "op_id": 573,
+          "op": "DIV",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 15361,
+          "end": 15661,
+          "duration": 300
+        },
+        {
+          "task_id": 2,
+          "op_id": 575,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 15661,
+          "end": 15745,
+          "duration": 84
+        },
+        {
+          "task_id": 2,
+          "op_id": 577,
+          "op": "SUB",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 15745,
+          "end": 15829,
+          "duration": 84
+        },
+        {
+          "task_id": 2,
+          "op_id": 579,
+          "op": "EXP",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 15829,
+          "end": 16129,
+          "duration": 300
+        },
+        {
+          "task_id": 2,
+          "op_id": 581,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 16129,
+          "end": 16213,
+          "duration": 84
+        },
+        {
+          "task_id": 2,
+          "op_id": 583,
+          "op": "DIV",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 16213,
+          "end": 16513,
+          "duration": 300
+        },
+        {
+          "task_id": 2,
+          "op_id": 585,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 16513,
+          "end": 16957,
+          "duration": 444
+        },
+        {
+          "task_id": 2,
+          "op_id": 635,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 16957,
+          "end": 17005,
+          "duration": 48
+        },
+        {
+          "task_id": 2,
+          "op_id": 757,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 16957,
+          "end": 17833,
+          "duration": 876
+        },
+        {
+          "task_id": 2,
+          "op_id": 637,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 17005,
+          "end": 17018,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1801,
+          "op": "COPY_OUT",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE3",
+          "start": 17018,
+          "end": 17019,
+          "duration": 1
+        },
+        {
+          "task_id": 2,
+          "op_id": 759,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 17833,
+          "end": 18709,
+          "duration": 876
+        },
+        {
+          "task_id": 2,
+          "op_id": 761,
+          "op": "SIGMOID",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 17833,
+          "end": 18277,
+          "duration": 444
+        },
+        {
+          "task_id": 2,
+          "op_id": 763,
+          "op": "MUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 18277,
+          "end": 18361,
+          "duration": 84
+        },
+        {
+          "task_id": 2,
+          "op_id": 765,
+          "op": "MUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 18709,
+          "end": 18793,
+          "duration": 84
+        },
+        {
+          "task_id": 2,
+          "op_id": 767,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 18793,
+          "end": 19669,
+          "duration": 876
+        },
+        {
+          "task_id": 2,
+          "op_id": 769,
+          "op": "ADD",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 19669,
+          "end": 19717,
+          "duration": 48
+        },
+        {
+          "task_id": 2,
+          "op_id": 1129,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 19669,
+          "end": 19897,
+          "duration": 228
+        },
+        {
+          "task_id": 2,
+          "op_id": 846,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 19717,
+          "end": 19765,
+          "duration": 48
+        },
+        {
+          "task_id": 2,
+          "op_id": 848,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 19765,
+          "end": 19779,
+          "duration": 14
+        },
+        {
+          "task_id": 2,
+          "op_id": 1590,
+          "op": "SIGMOID",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 19779,
+          "end": 19792,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1592,
+          "op": "RELU",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 19792,
+          "end": 19805,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 958,
+          "op": "RELU",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 19805,
+          "end": 19849,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 1965,
+          "op": "COPY_OUT",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE3",
+          "start": 19805,
+          "end": 19806,
+          "duration": 1
+        },
+        {
+          "task_id": 2,
+          "op_id": 960,
+          "op": "RELU",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 19849,
+          "end": 19893,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 962,
+          "op": "RELU",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 19893,
+          "end": 19937,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 1131,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 19897,
+          "end": 20125,
+          "duration": 228
+        },
+        {
+          "task_id": 2,
+          "op_id": 964,
+          "op": "ADD",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 19937,
+          "end": 19981,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 966,
+          "op": "RELU",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 19981,
+          "end": 20025,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 968,
+          "op": "RELU",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 20025,
+          "end": 20069,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 972,
+          "op": "ADD",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 20069,
+          "end": 20113,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 970,
+          "op": "ADD",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 20113,
+          "end": 20157,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 974,
+          "op": "ADD",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 20157,
+          "end": 20201,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 1075,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 20201,
+          "end": 20245,
+          "duration": 44
+        },
+        {
+          "task_id": 2,
+          "op_id": 1133,
+          "op": "SIGMOID",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 20245,
+          "end": 20473,
+          "duration": 228
+        },
+        {
+          "task_id": 2,
+          "op_id": 1859,
+          "op": "COPY_OUT",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE3",
+          "start": 20245,
+          "end": 20246,
+          "duration": 1
+        },
+        {
+          "task_id": 2,
+          "op_id": 1135,
+          "op": "MUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 20473,
+          "end": 20521,
+          "duration": 48
+        },
+        {
+          "task_id": 2,
+          "op_id": 1137,
+          "op": "MUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 20521,
+          "end": 20569,
+          "duration": 48
+        },
+        {
+          "task_id": 2,
+          "op_id": 1139,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 20569,
+          "end": 20797,
+          "duration": 228
+        },
+        {
+          "task_id": 2,
+          "op_id": 30,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 20797,
+          "end": 20971,
+          "duration": 174
+        },
+        {
+          "task_id": 2,
+          "op_id": 1141,
+          "op": "ADD",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 20797,
+          "end": 20821,
+          "duration": 24
+        },
+        {
+          "task_id": 2,
+          "op_id": 1236,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 20821,
+          "end": 20845,
+          "duration": 24
+        },
+        {
+          "task_id": 2,
+          "op_id": 1238,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 20845,
+          "end": 20858,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1534,
+          "op": "SIGMOID",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 20858,
+          "end": 20871,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1937,
+          "op": "COPY_OUT",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE3",
+          "start": 20871,
+          "end": 20872,
+          "duration": 1
+        },
+        {
+          "task_id": 2,
+          "op_id": 32,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 20971,
+          "end": 21145,
+          "duration": 174
+        },
+        {
+          "task_id": 2,
+          "op_id": 34,
+          "op": "SIGMOID",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 20971,
+          "end": 21145,
+          "duration": 174
+        },
+        {
+          "task_id": 2,
+          "op_id": 36,
+          "op": "MUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 21145,
+          "end": 21184,
+          "duration": 39
+        },
+        {
+          "task_id": 2,
+          "op_id": 38,
+          "op": "MUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 21184,
+          "end": 21223,
+          "duration": 39
+        },
+        {
+          "task_id": 2,
+          "op_id": 40,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 21223,
+          "end": 21397,
+          "duration": 174
+        },
+        {
+          "task_id": 2,
+          "op_id": 42,
+          "op": "ADD",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 21397,
+          "end": 21418,
+          "duration": 21
+        },
+        {
+          "task_id": 2,
+          "op_id": 672,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 21397,
+          "end": 22273,
+          "duration": 876
+        },
+        {
+          "task_id": 2,
+          "op_id": 99,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 21418,
+          "end": 21439,
+          "duration": 21
+        },
+        {
+          "task_id": 2,
+          "op_id": 101,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 21439,
+          "end": 21452,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1568,
+          "op": "SIGMOID",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 21452,
+          "end": 21465,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1951,
+          "op": "COPY_OUT",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE3",
+          "start": 21465,
+          "end": 21466,
+          "duration": 1
+        },
+        {
+          "task_id": 2,
+          "op_id": 674,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 22273,
+          "end": 23149,
+          "duration": 876
+        },
+        {
+          "task_id": 2,
+          "op_id": 676,
+          "op": "SIGMOID",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 22273,
+          "end": 22717,
+          "duration": 444
+        },
+        {
+          "task_id": 2,
+          "op_id": 678,
+          "op": "MUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 22717,
+          "end": 22801,
+          "duration": 84
+        },
+        {
+          "task_id": 2,
+          "op_id": 680,
+          "op": "MUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 23149,
+          "end": 23233,
+          "duration": 84
+        },
+        {
+          "task_id": 2,
+          "op_id": 682,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 23233,
+          "end": 24109,
+          "duration": 876
+        },
+        {
+          "task_id": 2,
+          "op_id": 684,
+          "op": "ADD",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 24109,
+          "end": 24157,
+          "duration": 48
+        },
+        {
+          "task_id": 2,
+          "op_id": 774,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 24109,
+          "end": 24985,
+          "duration": 876
+        },
+        {
+          "task_id": 2,
+          "op_id": 826,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 24157,
+          "end": 24205,
+          "duration": 48
+        },
+        {
+          "task_id": 2,
+          "op_id": 828,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 24205,
+          "end": 24219,
+          "duration": 14
+        },
+        {
+          "task_id": 2,
+          "op_id": 1582,
+          "op": "SIGMOID",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 24219,
+          "end": 24232,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1959,
+          "op": "COPY_OUT",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE3",
+          "start": 24232,
+          "end": 24233,
+          "duration": 1
+        },
+        {
+          "task_id": 2,
+          "op_id": 776,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 24985,
+          "end": 25861,
+          "duration": 876
+        },
+        {
+          "task_id": 2,
+          "op_id": 778,
+          "op": "SIGMOID",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 24985,
+          "end": 25429,
+          "duration": 444
+        },
+        {
+          "task_id": 2,
+          "op_id": 780,
+          "op": "MUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 25429,
+          "end": 25513,
+          "duration": 84
+        },
+        {
+          "task_id": 2,
+          "op_id": 782,
+          "op": "MUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 25861,
+          "end": 25945,
+          "duration": 84
+        },
+        {
+          "task_id": 2,
+          "op_id": 784,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 25945,
+          "end": 26821,
+          "duration": 876
+        },
+        {
+          "task_id": 2,
+          "op_id": 786,
+          "op": "ADD",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 26821,
+          "end": 26869,
+          "duration": 48
+        },
+        {
+          "task_id": 2,
+          "op_id": 1214,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 26821,
+          "end": 27049,
+          "duration": 228
+        },
+        {
+          "task_id": 2,
+          "op_id": 850,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 26869,
+          "end": 26917,
+          "duration": 48
+        },
+        {
+          "task_id": 2,
+          "op_id": 852,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 26917,
+          "end": 26931,
+          "duration": 14
+        },
+        {
+          "task_id": 2,
+          "op_id": 1839,
+          "op": "COPY_OUT",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE3",
+          "start": 26931,
+          "end": 26932,
+          "duration": 1
+        },
+        {
+          "task_id": 2,
+          "op_id": 1216,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 27049,
+          "end": 27277,
+          "duration": 228
+        },
+        {
+          "task_id": 2,
+          "op_id": 1218,
+          "op": "SIGMOID",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 27049,
+          "end": 27277,
+          "duration": 228
+        },
+        {
+          "task_id": 2,
+          "op_id": 1220,
+          "op": "MUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 27277,
+          "end": 27325,
+          "duration": 48
+        },
+        {
+          "task_id": 2,
+          "op_id": 1222,
+          "op": "MUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 27325,
+          "end": 27373,
+          "duration": 48
+        },
+        {
+          "task_id": 2,
+          "op_id": 1224,
+          "op": "MATMUL",
+          "subgraph_id": 2,
+          "pipe": "PIPE_M",
+          "start": 27373,
+          "end": 27601,
+          "duration": 228
+        },
+        {
+          "task_id": 2,
+          "op_id": 1226,
+          "op": "ADD",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 27601,
+          "end": 27625,
+          "duration": 24
+        },
+        {
+          "task_id": 2,
+          "op_id": 1256,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 27625,
+          "end": 27649,
+          "duration": 24
+        },
+        {
+          "task_id": 2,
+          "op_id": 1258,
+          "op": "REDUCE",
+          "subgraph_id": 2,
+          "pipe": "PIPE_V",
+          "start": 27649,
+          "end": 27662,
+          "duration": 13
+        },
+        {
+          "task_id": 2,
+          "op_id": 1901,
+          "op": "COPY_OUT",
+          "subgraph_id": 2,
+          "pipe": "PIPE_MTE3",
+          "start": 27662,
+          "end": 27663,
+          "duration": 1
+        }
+      ]
+    }
+  ],
+  "input_graph": "case_010.json",
+  "input_plan": "case_010_n3_plan.json"
+}
