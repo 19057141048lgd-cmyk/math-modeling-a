@@ -1,0 +1,10 @@
+input_graph: case_059.json
+scene: B
+makespan: 150736
+num_cores: 5
+data movement: scheduled_copy_bytes=4947968, physical_ddr_bytes=4947968, cache_hits=1068/1584, cache_hit_bytes=3268608
+core 0: ops=924, end=150736
+core 1: ops=880, end=150736
+core 2: ops=858, end=150736
+core 3: ops=880, end=150736
+core 4: ops=858, end=139277

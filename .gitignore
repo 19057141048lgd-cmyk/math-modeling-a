@@ -1,3 +1,4 @@
-# 求解中间产物，合计约 7GB，超过 GitHub 建议的仓库体积
-A题方案/results/dev/
-A题方案/results_all/eval/
+# 实验原始结果故意放进仓库，方便队友对照和接着做。
+# 只忽略 Python 缓存。
+__pycache__/
+*.pyc
