@@ -57,6 +57,17 @@ def fallback(case, q, n, cur, best, prev, out):
     return cur
 
 
+def replace(src, dst, tries=20):
+    """Windows 上刚写出的文件可能被杀毒/索引进程短暂占用，改名失败时稍等重试。"""
+    for i in range(tries):
+        try:
+            return os.replace(src, dst)
+        except PermissionError:
+            if i == tries - 1:
+                raise
+            time.sleep(0.5)
+
+
 def adopt_fallback_eval(case, q, n, params, plan_path, out):
     """兜底替换后让 eval/ 中的主结果文件对应最终方案，原选方案的结果改名为 *_pick。
     问题2 方案已在问题3 评估器下评估过，直接改名；上一核数的方案补空核后是新文件，重新评估一次。"""
@@ -64,12 +75,12 @@ def adopt_fallback_eval(case, q, n, params, plan_path, out):
     main = os.path.join(ev, '%s_p%d_n%d' % (case, q, n))
     for ext in ('.json', '.log'):
         if os.path.exists(main + ext):
-            os.replace(main + ext, main + '_pick' + ext)
+            replace(main + ext, main + '_pick' + ext)
     if params == 'p2_plan':
         src = os.path.join(ev, '%s_p3_n%d_p2plan' % (case, n))
         for ext in ('.json', '.log'):
             if os.path.exists(src + ext):
-                os.replace(src + ext, main + ext)
+                replace(src + ext, main + ext)
         return read_result(main + '.json')
     return run_official(case, q, plan_path, ev, tag='p%d_n%d' % (q, n))
 

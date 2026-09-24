@@ -36,6 +36,7 @@ class Graph:
         self.out_bytes = {i: 0 for i in self.compute}      # 图输出（经原 COPY_OUT 写回）的字节
         self.tensor_size = {}
         self.tensor_consumers = {}
+        self.tensor_pos = {tid: 'UB' if t['pos'] == 'DDR' else t['pos'] for tid, t in tensors.items()}
 
         for tid, cs in consumers.items():
             p = producer.get(tid)
@@ -122,12 +123,15 @@ class Cluster:
         self.plan = []
 
 
-def build_clusters(G, n_cores, split_ratio=0.5, grain=16):
+def build_clusters(G, n_cores, split_ratio=0.5, grain=16, mem_cap=None):
     """两级粗化。
 
     1. 独立作业：计算量不超过 split_ratio * W / N 的作业整体作为一个簇（不可拆）；
     2. 大作业：按“单消费者依赖树”自底向上合并（in-tree 聚簇），簇计算量上限 W / (N * grain)。
        in-tree 簇只有根算子向外输出，可以证明簇图必然无环。
+    mem_cap（{'L1': 字节, 'UB': 字节}）给定时按内存感知聚簇：图输入超过上限的作业不整体保留，
+    in-tree 合并也不让簇的图输入超过上限。官方按簇内 DFS 序执行，共用权重的小作业整体成簇时
+    每个作业都要把全部权重读一遍；拆开后列表调度按向上秩逐层推进，同一权重的消费者连续执行。
     """
     W = G.total_cycles
     big = split_ratio * W / n_cores
@@ -135,27 +139,48 @@ def build_clusters(G, n_cores, split_ratio=0.5, grain=16):
     root = {}
     clusters = []
     cluster_of = {}
+
+    def fits(held, fp, ops):
+        add, seen = defaultdict(int), set(held)
+        for u in ops:
+            for tid, size in G.inputs[u].items():
+                if tid not in seen:
+                    seen.add(tid)
+                    add[G.tensor_pos[tid]] += size
+        return all(fp[T] + b <= mem_cap[T] for T, b in add.items()), add
+
     for j, members in enumerate(G.jobs()):
         weight = sum(G.cycles[i] for i in members)
-        if weight <= big:
+        if weight <= big and (mem_cap is None or fits(set(), defaultdict(int), members)[0]):
             c = Cluster(len(clusters), j)
             clusters.append(c)
             for u in members:
                 cluster_of[u] = c.cid
             continue
         mset = set(members)
-        wt = {}
+        wt, held, fp = {}, {}, {}
         for u in reversed(members):
             s = G.succ[u]
             if len(s) == 1 and G.out_bytes[u] == 0:
                 v = next(iter(s))
                 r = root[v]
                 if wt[r] + G.cycles[u] <= cap:
-                    root[u] = r
-                    wt[r] += G.cycles[u]
-                    continue
+                    ok, add = (True, None) if mem_cap is None else fits(held[r], fp[r], (u,))
+                    if ok:
+                        root[u] = r
+                        wt[r] += G.cycles[u]
+                        if add:
+                            held[r].update(G.inputs[u])
+                            for T, b in add.items():
+                                fp[r][T] += b
+                        continue
             root[u] = u
             wt[u] = G.cycles[u]
+            if mem_cap is not None:
+                held[u] = set(G.inputs[u])
+                fp[u] = defaultdict(int)
+                for tid, size in G.inputs[u].items():
+                    fp[u][G.tensor_pos[tid]] += size
         local = {}
         for u in members:
             r = root[u]

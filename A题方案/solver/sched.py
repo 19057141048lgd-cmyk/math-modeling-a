@@ -6,8 +6,16 @@ scene='C'：问题 3，在 B 的基础上加入 FIFO 只读 L2 Cache 的命中�
 
 核模型：PIPE_M / PIPE_V 各自按序发射（与官方 PIPE_SLOTS=1 一致），MTE2 按序搬入，
 共享 DDR 带宽用时间桶近似；簇内算子按官方 step1 同规则的 DFS 序执行。
+
+可选策略 opts：
+  'blc'   优先级取向上秩 + 最大入边通信（Kulagina 等 CCGrid 2025 的 BLC），先执行能释放大输入的簇；
+  'child' 关键子任务前瞻（Topcuoglu 等 TPDS 2002 第 6 节 B1）：簇与通信量最大、且其余前驱都已调度的
+          后继放到使该后继最早完成的同一核；
+  mem_cap 场景 B/C 按 L1/UB 容量维护每核已搬入张量的 LRU 驻留集合（HEFTM 的试分配内存检查），
+          被挤出的张量再次使用时重新搬入并计入流量。
 """
 import heapq
+from collections import OrderedDict
 
 from .graph import cluster_topo
 
@@ -87,7 +95,7 @@ class Schedule:
 
 
 class ListScheduler:
-    def __init__(self, G, clusters, n_cores, scene, hw, locality=0.0, task_cap=None):
+    def __init__(self, G, clusters, n_cores, scene, hw, locality=0.0, task_cap=None, opts=(), mem_cap=None):
         self.G = G
         self.cl = clusters
         self.N = n_cores
@@ -98,6 +106,9 @@ class ListScheduler:
         self.task_cap = task_cap   # 场景 A：单个 Task 的计算量上限，超过即在同核新开 Task（限制工作集、避免 spill）
         self.delay = hw.cross_wait_a if scene == 'A' else hw.cross_delay_b
         self.hit_cost = hw.bandwidth / hw.cache_bandwidth
+        self.blc = 'blc' in opts
+        self.child = 'child' in opts
+        self.mem_cap = mem_cap if scene != 'A' else None
 
     # ---------------- 优先级：带平均通信代价的向上秩 ----------------
     def upward_rank(self):
@@ -112,6 +123,45 @@ class ListScheduler:
             rank[cid] = c.solo + best
         return rank
 
+    def priority(self):
+        rank = self.upward_rank()
+        if not self.blc:
+            return rank
+        p = (self.N - 1) / self.N if self.N > 1 else 0.0
+        size = self.G.tensor_size
+        for c in self.cl:
+            inc = max((p * (self.delay + 2 * sum(size[t] for t in tids) / self.bw) for tids in c.preds.values()),
+                      default=0.0)
+            inc = max([inc] + [s / self.bw for s in c.inputs.values()])
+            rank[c.cid] += inc
+        return rank
+
+    def _critical_child(self, c, indeg):
+        """B1：通信量最大的后继，且 c 是它最后一个未调度的前驱。"""
+        size = self.G.tensor_size
+        best, best_bytes = None, 0
+        for s in c.succs:
+            if indeg[s] == 1:
+                b = sum(size[t] for t in self.cl[s].preds[c.cid])
+                if b > best_bytes:
+                    best, best_bytes = s, b
+        return best
+
+    def _child_finish(self, c, d, k, f):
+        """c 在核 k 上于 f 完成时，其关键子任务 d 同放核 k 的估计完成时间。"""
+        S, size = self.S, self.G.tensor_size
+        ready = f
+        for p, tids in self.cl[d].preds.items():
+            if p == c.cid:
+                continue
+            if S.core[p] == k:
+                a = S.fin[p]
+            else:
+                a = S.fin[p] + self.delay + 2 * sum(size[t] for t in tids) / self.bw
+            if a > ready:
+                ready = a
+        return ready + self.cl[d].solo
+
     # ---------------- 主循环 ----------------
     def run(self):
         cl, N = self.cl, self.N
@@ -124,27 +174,36 @@ class ListScheduler:
         self.ddr = DDRBins(self.bw)
         self.cache = CacheModel(self.hw.cache_capacity) if self.scene == 'C' else None
         self.loaded = [dict() for _ in range(N)]
+        self.lru = [OrderedDict() for _ in range(N)]
+        self.resid = [dict.fromkeys(('L1', 'UB'), 0.0) for _ in range(N)]
         self.read_once = set()
         self.cur = [None] * N
 
-        rank = self.upward_rank()
+        rank = self.priority()
         indeg = [len(c.preds) for c in cl]
+        pinned = {}
         heap = [(-rank[c.cid], c.cid) for c in cl if indeg[c.cid] == 0]
         heapq.heapify(heap)
         while heap:
             _, cid = heapq.heappop(heap)
             c = cl[cid]
-            best = None
-            for k in range(N):
+            cores = (pinned.pop(cid),) if cid in pinned else range(N)
+            options = []
+            for k in cores:
                 for option in self._options(k):
                     res = self._evaluate(c, k, option, commit=False)
                     if res is None:
                         continue
                     f, traffic = res
                     key = (f + self.locality * traffic / self.bw, f, self.tM[k] + self.tV[k], k)
-                    if best is None or key < best[0]:
-                        best = (key, k, option)
-            _, k, option = best
+                    options.append((key, k, option, f))
+            best = min(options)
+            if self.child and len(cores) > 1:
+                d = self._critical_child(c, indeg)
+                if d is not None:
+                    best = min(options, key=lambda o: (self._child_finish(c, d, o[1], o[3]), o[0]))
+                    pinned[d] = best[1]
+            _, k, option, _ = best
             self._evaluate(c, k, option, commit=True)
             S.seq.append(cid)
             for s in c.succs:
@@ -217,6 +276,7 @@ class ListScheduler:
             base = 0.0
 
         new = {}
+        used = {}
         f = []
         first = None
         for is_m, cyc, intra, ext in c.plan:
@@ -228,6 +288,7 @@ class ListScheduler:
                 if q >= 0 and core[q] == k and (scene != 'A' or task_of[q] == task_id):
                     a = fin_c[q]
                 else:
+                    used[tid] = size
                     a = loaded.get(tid)
                     if a is None:
                         a = new.get(tid)
@@ -268,6 +329,8 @@ class ListScheduler:
         fin_c[cid] = fin
         S.traffic += traffic
         loaded.update(new)
+        if self.mem_cap is not None:
+            self._retain(k, used)
         self.read_once.update(c.inputs)
         out_end = self.ddr.transfer(fin, c.out_bytes, True) if c.out_bytes else fin
         self.tM[k], self.tV[k], self.t2[k] = tM, tV, t2
@@ -290,6 +353,26 @@ class ListScheduler:
                     S.tasks[task_of[p]]['closed'] = True
         return fin, traffic
 
+    def _retain(self, k, used):
+        """刚用过的张量移到 LRU 末尾；超出容量时从最久未用者挤出，挤出后再用须重新搬入。"""
+        lru, resid, cap, pos = self.lru[k], self.resid[k], self.mem_cap, self.G.tensor_pos
+        for tid, size in used.items():
+            if tid in lru:
+                lru.move_to_end(tid)
+            else:
+                lru[tid] = size
+                resid[pos[tid]] += size
+        for T in ('L1', 'UB'):
+            if resid[T] <= cap[T]:
+                continue
+            for tid in list(lru):
+                if resid[T] <= cap[T]:
+                    break
+                if pos[tid] != T or tid in used:
+                    continue
+                resid[T] -= lru.pop(tid)
+                self.loaded[k].pop(tid, None)
 
-def schedule(G, clusters, n_cores, scene, hw, locality=0.0, task_cap=None):
-    return ListScheduler(G, clusters, n_cores, scene, hw, locality, task_cap).run()
+
+def schedule(G, clusters, n_cores, scene, hw, locality=0.0, task_cap=None, opts=(), mem_cap=None):
+    return ListScheduler(G, clusters, n_cores, scene, hw, locality, task_cap, opts, mem_cap).run()

@@ -24,20 +24,30 @@ INF = math.inf
 # spill 流量经过共享 DDR，按 SPILL_ALPHA * u * 字节 / 带宽 计入 makespan，u 为 DDR 利用率：
 # DDR 越空闲，spill 越能被计算掩盖。16 个代表用例上标定，另 10 个用例（含 4 个大图）上验证（dev_spill_time.py）。
 SPILL_ALPHA = 1.2
+# 内存感知聚簇 / 驻留跟踪只给已搬入的图输入和跨核张量留出片上容量的这一比例，其余留给中间结果。
+MEM_FRAC = 0.5
 
 # (调度场景, split_ratio, grain, locality[, task_div])，由 10 个代表用例的参数扫描确定；
 # split_ratio=inf 即“独立作业整体分配”的朴素基线，保证不劣于基线；
 # task_div：场景 A 单个 Task 计算量上限 W/(N*task_div)，用于限制工作集、消除 spill。
+# 第 6 项为策略开关（见 build_candidate），挂在各问题最常被选中的参数上。
+# child 与 mr 不进候选池：23 个用例上 child 净效果为零（5 次选中 2 次退化），mr 与 spill 预测重复计费。
 CANDIDATES = {
     1: [('A', 0.25, 16, 2.0), ('A', 0.25, 16, 1.0), ('A', 1.0, 16, 2.0), ('A', 0.25, 16, 4.0),
         ('A', 1.0, 64, 8.0), ('A', 0.1, 64, 1.0), ('A', 1.0, 16, 0.0), ('A', INF, 16, 0.0),
-        ('A', 0.1, 16, 2.0, 4), ('A', 0.1, 16, 2.0, 8), ('A', 0.25, 16, 2.0, 16), ('A', INF, 16, 0.0, 8)],
+        ('A', 0.1, 16, 2.0, 4), ('A', 0.1, 16, 2.0, 8), ('A', 0.25, 16, 2.0, 16), ('A', INF, 16, 0.0, 8),
+        ('A', 0.25, 16, 2.0, 16, 'mc'), ('A', 0.1, 16, 2.0, 4, 'mc'), ('A', 0.25, 16, 2.0, None, 'blc'),
+        ('A', 0.25, 16, 2.0, 16, 'blc')],
     2: [('B', 0.1, 16, 8.0), ('B', 0.1, 16, 1.0), ('B', 0.1, 64, 8.0), ('B', 0.1, 64, 2.0),
         ('B', 0.25, 64, 8.0), ('B', 0.25, 16, 2.0), ('B', 1.0, 64, 0.0), ('B', 1.0, 16, 4.0),
-        ('B', INF, 16, 0.0)],
+        ('B', INF, 16, 0.0),
+        ('B', 0.1, 16, 8.0, None, 'mc'), ('B', 0.1, 64, 2.0, None, 'mc'), ('B', 0.1, 16, 8.0, None, 'blc'),
+        ('B', 0.1, 64, 2.0, None, 'blc')],
     3: [('C', 0.1, 64, 4.0), ('C', 0.1, 64, 2.0), ('C', 0.1, 16, 1.0), ('C', 0.25, 64, 2.0),
         ('C', 0.25, 16, 8.0), ('C', 1.0, 64, 0.0), ('C', 1.0, 16, 1.0), ('B', 0.1, 16, 8.0),
-        ('B', 0.25, 16, 2.0), ('C', INF, 16, 0.0)],
+        ('B', 0.25, 16, 2.0), ('C', INF, 16, 0.0),
+        ('C', 0.1, 64, 4.0, None, 'mc'), ('C', 0.25, 16, 8.0, None, 'mc'), ('C', 0.1, 64, 4.0, None, 'blc'),
+        ('B', 0.1, 16, 8.0, None, 'mc')],
 }
 # 粗化不应吃掉并行度：逐级“分叉-汇合”的长链（如 case_016）按 in-tree 合并后，每级的并行分支并成一个簇，
 # 簇图几乎是一条链。簇图并行度低于 GRAIN_THETA * min(N, 算子级并行度) 时，该候选另加粒度 ×4、×16…
@@ -46,7 +56,7 @@ GRAIN_THETA = 0.75
 MAX_GRAIN = 4096
 
 
-def candidate_params(G, n_cores, problem):
+def candidate_params(G, n_cores, problem, hw):
     target = GRAIN_THETA * min(n_cores, G.parallelism)
     collapsed = {}
     out = []
@@ -56,11 +66,12 @@ def candidate_params(G, n_cores, problem):
         scene, split, grain = params[:3]
         if split == INF:
             continue
-        if (split, grain) not in collapsed:
-            clusters, _ = build_clusters(G, n_cores, split, grain)
-            collapsed[(split, grain)] = cluster_parallelism(G, clusters) < target
+        mc = 'mc' in flags_of(params)
+        if (split, grain, mc) not in collapsed:
+            clusters, _ = build_clusters(G, n_cores, split, grain, mem_cap(hw) if mc else None)
+            collapsed[(split, grain, mc)] = cluster_parallelism(G, clusters) < target
         g = grain * 4
-        while collapsed[(split, grain)] and g <= MAX_GRAIN:
+        while collapsed[(split, grain, mc)] and g <= MAX_GRAIN:
             finer = (scene, split, g) + params[3:]
             if finer not in out:
                 out.append(finer)
@@ -73,10 +84,20 @@ def single_subgraph_plan(G, n_cores):
             'core_schedules': [[0]] + [[] for _ in range(n_cores - 1)]}
 
 
-def build_candidate(G, n_cores, hw, scene, split_ratio, grain, locality, task_div=None):
-    clusters, _ = build_clusters(G, n_cores, split_ratio, grain)
+def flags_of(params):
+    return set(params[5].split('+')) if len(params) > 5 else set()
+
+
+def mem_cap(hw):
+    return {'L1': MEM_FRAC * hw.l1, 'UB': MEM_FRAC * hw.ub}
+
+
+def build_candidate(G, n_cores, hw, scene, split_ratio, grain, locality, task_div=None, opts=''):
+    """opts：'+' 连接的策略开关。mc 内存感知聚簇，mr 调度时维护驻留集合，blc / child 见 sched.py。"""
+    flags = set(opts.split('+')) if opts else set()
+    clusters, _ = build_clusters(G, n_cores, split_ratio, grain, mem_cap(hw) if 'mc' in flags else None)
     task_cap = G.total_cycles / (n_cores * task_div) if task_div else None
-    S = schedule(G, clusters, n_cores, scene, hw, locality, task_cap)
+    S = schedule(G, clusters, n_cores, scene, hw, locality, task_cap, flags, mem_cap(hw) if 'mr' in flags else None)
     if scene == 'A':
         plan = plan_scene_a(clusters, S)
     else:
@@ -124,7 +145,7 @@ def solve(G, n_cores, problem, hw, verify=0, case=None, log=None, extra=()):
     # 1 核时同样生成候选：切成多个子图会改变核内执行顺序，可能减少官方单核基线中的 spill。
     # 预测值已计入 spill，同一调度场景的候选统一排序；问题3 中场景 B 的候选按无 Cache 预测，单独成组。
     by_scene = {}
-    for params in candidate_params(G, n_cores, problem):
+    for params in candidate_params(G, n_cores, problem, hw):
         t0 = time.time()
         plan, pred, n_sub, n_cl, spill = build_candidate(G, n_cores, hw, *params)
         by_scene.setdefault(params[0], []).append((pred, params, plan, n_sub))
