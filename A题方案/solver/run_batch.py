@@ -7,7 +7,9 @@
 官方单核基线与方案无关，统一缓存在 results/single/。
 每个用例完成后写入 rows/<用例>.json；中断后用相同命令重跑，只会计算未完成的用例。
 summary.csv 中 pick_makespan 是 solve() 选中方案的官方 makespan；只用模型时若兜底方案更快，
-makespan 取兜底方案的结果（见 fallback）。
+makespan 取兜底方案的结果（见 fallback）。eval_file 是 makespan 所依据的官方结果文件：
+eval/<用例>_p<问题>_n<核数>.json 始终对应 plans/ 中的同名最终方案，被兜底替换的原选方案结果改名为 *_pick.json。
+题目规定单核加速比为 1，故 1 核行的 speedup 记为 1；这些行的 makespan 是 1 核重切分方案的官方结果（附加实验）。
 """
 import argparse
 import csv
@@ -20,11 +22,22 @@ from collections import defaultdict
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
 from .config import SOLUTION_DIR, case_path, data_dir, load_config
-from .evaluate import run_official, single_core_result
+from .evaluate import read_result, run_official, single_core_result
 from .graph import Graph
 from .solve import pad_plan, plan_signature, solve
 
 RESULTS = os.path.join(SOLUTION_DIR, 'results')
+
+
+def speedup(single, makespan, n):
+    return 1.0 if n == 1 else round(single / makespan, 4)
+
+
+def rel_path(p):
+    try:
+        return os.path.relpath(p, SOLUTION_DIR).replace(os.sep, '/')
+    except ValueError:  # Windows 上 --out 与方案目录不在同一盘符
+        return p
 
 
 def fallback(case, q, n, cur, best, prev, out):
@@ -42,6 +55,23 @@ def fallback(case, q, n, cur, best, prev, out):
         if r['makespan'] < cur[4]['makespan']:
             cur = (p[0], p[1], p[2], 'p2_plan', r)
     return cur
+
+
+def adopt_fallback_eval(case, q, n, params, plan_path, out):
+    """兜底替换后让 eval/ 中的主结果文件对应最终方案，原选方案的结果改名为 *_pick。
+    问题2 方案已在问题3 评估器下评估过，直接改名；上一核数的方案补空核后是新文件，重新评估一次。"""
+    ev = os.path.join(out, 'eval')
+    main = os.path.join(ev, '%s_p%d_n%d' % (case, q, n))
+    for ext in ('.json', '.log'):
+        if os.path.exists(main + ext):
+            os.replace(main + ext, main + '_pick' + ext)
+    if params == 'p2_plan':
+        src = os.path.join(ev, '%s_p3_n%d_p2plan' % (case, n))
+        for ext in ('.json', '.log'):
+            if os.path.exists(src + ext):
+                os.replace(src + ext, main + ext)
+        return read_result(main + '.json')
+    return run_official(case, q, plan_path, ev, tag='p%d_n%d' % (q, n))
 
 
 def case_job(case, cores, problems, verify, out):
@@ -75,11 +105,14 @@ def case_job(case, cores, problems, verify, out):
             with open(path, 'w', encoding='utf-8') as f:
                 json.dump(plan, f)
             t1 = time.time()
+            main = os.path.join(out, 'eval', '%s_p%d_n%d' % (case, q, n))
             if q == 1 and n == 1 and info['subgraphs'] == 1:
                 # 1 核单子图方案的问题1 评估结果与官方单核基线相同，大图上这是最慢的一次评估
                 r = dict(base, eval_seconds=0.0)
+                eval_file = os.path.join(RESULTS, 'single', '%s_single.json' % case)
             else:
                 r = run_official(case, q, path, os.path.join(out, 'eval'), tag='p%d_n%d' % (q, n))
+                eval_file = main + '.json'
             cur = (plan, info['predicted'], info['subgraphs'], info['params'], r)
             if not verify:
                 cur = fallback(case, q, n, cur, best, prev, out)
@@ -88,13 +121,16 @@ def case_job(case, cores, problems, verify, out):
             if res is not r:
                 with open(path, 'w', encoding='utf-8') as f:
                     json.dump(plan, f)
+                res = adopt_fallback_eval(case, q, n, params, path, out)
+                eval_file = main + '.json'
             rows.append({'case': case, 'problem': q, 'cores': n, 'single_makespan': single,
                          'makespan': res['makespan'], 'pick_makespan': r['makespan'],
-                         'speedup': round(single / res['makespan'], 4),
+                         'speedup': speedup(single, res['makespan'], n),
                          'added_copy_bytes': res['added_copy_bytes'],
                          'spill_added_copy_bytes': res['spill_added_copy_bytes'],
                          'cache_hit_rate': res['cache_hit_rate'], 'subgraphs': n_sub,
                          'predicted': pred, 'params': str(params),
+                         'eval_file': rel_path(eval_file),
                          'solve_seconds': round(solve_s, 1), 'eval_seconds': round(time.time() - t1, 1)})
     with open(done, 'w', encoding='utf-8') as f:
         json.dump({'key': key, 'rows': rows}, f)
@@ -102,37 +138,56 @@ def case_job(case, cores, problems, verify, out):
 
 
 def write_tables(rows, singles, out):
+    """table_p<问题>.md：平均加速比、逐用例加速比，以及题目附录要求的逐用例官方指标（多核）。
+    问题3 的附录同时列出无 L2（问题2 的方案与结果）和只读 Cache 两种配置。"""
     by = {(r['case'], r['problem'], r['cores']): r for r in rows}
     cases = sorted({r['case'] for r in rows})
     cores = sorted({r['cores'] for r in rows})
+    multi = [n for n in cores if n > 1]
+
+    def mean(v):
+        return '%.3f' % (sum(v) / len(v)) if v else '-'
+
     for q in sorted({r['problem'] for r in rows}):
-        lines = ['| 用例 | 单核 makespan | ' + ' | '.join('%d核 makespan / 加速比' % n for n in cores) + ' |',
-                 '|' + '---|' * (2 + len(cores))]
-        for case in cases:
-            cells = []
-            for n in cores:
-                r = by.get((case, q, n))
-                cells.append('%d / %.2f' % (r['makespan'], singles[case] / r['makespan']) if r else '-')
-            lines.append('| %s | %d | %s |' % (case, singles[case], ' | '.join(cells)))
-        avg = []
-        for n in cores:
-            sp = [singles[c] / by[(c, q, n)]['makespan'] for c in cases if (c, q, n) in by]
-            avg.append('%.3f' % (sum(sp) / len(sp)) if sp else '-')
-        lines.append('| **平均加速比** | | %s |' % ' | '.join(avg))
+        head = '| | ' + ' | '.join('%d核' % n for n in cores) + ' |'
+        lines = ['## 平均加速比', '', head, '|' + '---|' * (1 + len(cores)),
+                 '| 平均加速比 | %s |' % ' | '.join(
+                     mean([by[(c, q, n)]['speedup'] for c in cases if (c, q, n) in by]) for n in cores)]
         if q == 3:
-            lines += ['', '只读 Cache 相对无 L2（问题 2 方案、问题 2 评估）的加速比与命中率：', '',
-                      '| 用例 | ' + ' | '.join('%d核 加速比 / 命中率' % n for n in cores) + ' |',
-                      '|' + '---|' * (1 + len(cores))]
-            for case in cases:
-                cells = []
-                for n in cores:
-                    r3, r2 = by.get((case, 3, n)), by.get((case, 2, n))
-                    if r3 and r2:
-                        cells.append('%.3f / %.1f%%' % (r2['makespan'] / r3['makespan'],
-                                                        100 * (r3['cache_hit_rate'] or 0)))
-                    else:
-                        cells.append('-')
-                lines.append('| %s | %s |' % (case, ' | '.join(cells)))
+            lines.append('| 只读 Cache 相对无 L2 | %s |' % ' | '.join(
+                '-' if n == 1 else mean([by[(c, 2, n)]['makespan'] / by[(c, 3, n)]['makespan']
+                                         for c in cases if (c, 2, n) in by and (c, 3, n) in by]) for n in cores))
+        lines += ['', '单核加速比按题目定义为 1；单核基准是官方核内调度算法在整图上的 makespan。', '',
+                  '## 逐用例 makespan / 加速比', '',
+                  '| 用例 | 单核基准 makespan | ' + ' | '.join('%d核 makespan / 加速比' % n for n in multi) + ' |',
+                  '|' + '---|' * (2 + len(multi))]
+        for case in cases:
+            cells = ['%d / %.2f' % (by[(case, q, n)]['makespan'], by[(case, q, n)]['speedup'])
+                     if (case, q, n) in by else '-' for n in multi]
+            lines.append('| %s | %d | %s |' % (case, singles[case], ' | '.join(cells)))
+        lines += ['', '## 附录：逐用例官方评估结果', '']
+        if q == 3:
+            lines += ['相对无 L2 的加速比 = 无 L2 makespan / 只读 Cache makespan。', '',
+                      '| 用例 | 核数 | 无 L2 makespan | 无 L2 总额外数据搬运量 (B) | 只读 Cache makespan | '
+                      '只读 Cache 总额外数据搬运量 (B) | Cache 命中率 | 相对无 L2 加速比 |', '|' + '---|' * 8]
+        else:
+            lines += ['| 用例 | 核数 | makespan | 加速比 | 总额外数据搬运量 (B) | 其中 spill 搬运量 (B) |',
+                      '|' + '---|' * 6]
+        for case in cases:
+            for n in multi:
+                r = by.get((case, q, n))
+                if not r:
+                    continue
+                if q == 3:
+                    r2 = by.get((case, 2, n))
+                    base = ('%d' % r2['makespan'], '%d' % r2['added_copy_bytes'],
+                            '%.3f' % (r2['makespan'] / r['makespan'])) if r2 else ('-', '-', '-')
+                    lines.append('| %s | %d | %s | %s | %d | %d | %.1f%% | %s |' % (
+                        case, n, base[0], base[1], r['makespan'], r['added_copy_bytes'],
+                        100 * (r['cache_hit_rate'] or 0), base[2]))
+                else:
+                    lines.append('| %s | %d | %d | %.2f | %d | %d |' % (
+                        case, n, r['makespan'], r['speedup'], r['added_copy_bytes'], r['spill_added_copy_bytes']))
         with open(os.path.join(out, 'table_p%d.md' % q), 'w', encoding='utf-8') as f:
             f.write('\n'.join(lines) + '\n')
 
@@ -149,7 +204,7 @@ def plot(rows, singles, out):
     plt.rcParams['axes.unicode_minus'] = False
     avg = defaultdict(list)
     for r in rows:
-        avg[(r['problem'], r['cores'])].append(singles[r['case']] / r['makespan'])
+        avg[(r['problem'], r['cores'])].append(r['speedup'])
     cores = sorted({r['cores'] for r in rows})
     fig, ax = plt.subplots(figsize=(6, 4.2), dpi=150)
     names = {1: '问题1 场景A（Task 屏障）', 2: '问题2 场景B（无 L2）', 3: '问题3 场景B + 只读 Cache'}
@@ -185,7 +240,7 @@ def plot(rows, singles, out):
         for q, label in ((2, '无 L2（问题2）'), (3, '只读 Cache（问题3）')):
             ys = []
             for n in cores:
-                sp = [singles[c] / by[(c, q, n)]['makespan'] for c in cases if (c, q, n) in by]
+                sp = [by[(c, q, n)]['speedup'] for c in cases if (c, q, n) in by]
                 ys.append(sum(sp) / len(sp))
             ax.plot(cores, ys, marker='o', label=label)
         ax.set_xlabel('核数')
@@ -240,11 +295,14 @@ def main():
         return
 
     rows.sort(key=lambda r: (r['case'], r['problem'], r['cores']))
+    for r in rows:
+        r['speedup'] = speedup(r['single_makespan'], r['makespan'], r['cores'])
     with open(os.path.join(out, 'summary.csv'), 'w', encoding='utf-8-sig', newline='') as f:
         w = csv.DictWriter(f, fieldnames=['case', 'problem', 'cores', 'single_makespan', 'makespan', 'pick_makespan',
                                           'speedup',
                                           'added_copy_bytes', 'spill_added_copy_bytes', 'cache_hit_rate',
-                                          'subgraphs', 'predicted', 'params', 'solve_seconds', 'eval_seconds'])
+                                          'subgraphs', 'predicted', 'params', 'eval_file',
+                                          'solve_seconds', 'eval_seconds'])
         w.writeheader()
         w.writerows(rows)
     singles = {r['case']: r['single_makespan'] for r in rows}
