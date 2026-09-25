@@ -1,0 +1,142 @@
+完成 ('case_028', 5) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_028_n5.json
+完成 ('case_092', 3) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_092_n3.json
+完成 ('case_073', 3) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_073_n3.json
+完成 ('case_092', 5) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_092_n5.json
+完成 ('case_028', 3) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_028_n3.json
+完成 ('case_073', 5) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_073_n5.json
+完成 ('case_050', 3) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_050_n3.json
+完成 ('case_050', 5) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_050_n5.json
+完成 ('case_035', 5) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_035_n5.json
+完成 ('case_035', 3) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_035_n3.json
+完成 ('case_048', 3) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_048_n3.json
+完成 ('case_080', 3) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_080_n3.json
+完成 ('case_048', 5) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_048_n5.json
+完成 ('case_080', 5) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_080_n5.json
+完成 ('case_061', 3) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_061_n3.json
+完成 ('case_061', 5) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_061_n5.json
+完成 ('case_044', 5) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_044_n5.json
+完成 ('case_044', 3) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_044_n3.json
+完成 ('case_029', 3) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_029_n3.json
+完成 ('case_029', 5) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_029_n5.json
+完成 ('case_069', 3) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_069_n3.json
+完成 ('case_069', 5) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_069_n5.json
+完成 ('case_004', 3) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_004_n3.json
+完成 ('case_046', 3) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_046_n3.json
+完成 ('case_046', 5) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_046_n5.json
+完成 ('case_004', 5) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_004_n5.json
+完成 ('case_064', 5) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_064_n5.json
+完成 ('case_057', 3) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_057_n3.json
+完成 ('case_064', 3) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_064_n3.json
+完成 ('case_001', 3) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_001_n3.json
+完成 ('case_057', 5) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_057_n5.json
+完成 ('case_001', 5) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_001_n5.json
+完成 ('case_094', 5) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_094_n5.json
+完成 ('case_071', 5) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_071_n5.json
+完成 ('case_094', 3) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_094_n3.json
+完成 ('case_071', 3) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_071_n3.json
+完成 ('case_010', 3) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_010_n3.json
+完成 ('case_026', 3) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_026_n3.json
+完成 ('case_010', 5) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_010_n5.json
+完成 ('case_026', 5) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_026_n5.json
+完成 ('case_019', 3) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_019_n3.json
+完成 ('case_019', 5) C:\Users\richd\AppData\Local\Temp\mm_extract\cache_exp\case_019_n5.json
+失败 ('case_091', 3) 官方评估失败 case_091 P3:
+Traceback (most recent call last):
+  File "C:\Users\richd\Desktop\数�?建模\A�?1)\通用神经网络处理器下的�?核调度问�? 附件\code\multicore_cut_evaluate_problem_3.py", line 729, in <module>
+    raise SystemExit(run_problem_cli(3))
+                     ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\richd\Desktop\数�?建模\A�?1)\通用神经网络处理器下的�?核调度问�? 附件\code\contest_io.py", line 22, in run
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\richd\Desktop\数�?建模\A�?1)\通用神经网络处理器下的�?核调度问�? 附件\code\contest_io.py", line 246, in run_problem_cli
+    result = evaluate_problem_3(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\richd\Desktop\数�?建模\A�?1)\通用神经网络处理器下的�?核调度问�? 附件\code\multicore_cut_evaluate_problem_3.py", line 308, in evaluate_problem_3
+    data_movement, plan_view) = _build_scene_b_tasks(
+                                ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\richd\Desktop\数�?建模\A�?1)\通用神经网络处理器下的�?核调度问�? 附件\code\multicore_cut_evaluate_problem_3.py", line 281, in _build_scene_b_tasks
+    original_copy_traffic = _copy_traffic_bytes(graph_json)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\richd\Desktop\数�?建模\A�?1)\通用神经网络处理器下的�?核调度问�? 附件\code\multicore_cut_evaluate_problem_1.py", line 55, in _copy_traffic_bytes
+    in_tids, out_tids, _, _ = _build_graph_views(
+                              ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\richd\Desktop\数�?建模\A�?1)\通用神经网络处理器下的�?核调度问�? 附件\code\schedule_step3.py", line 41, in _build_graph_views
+    op_ids = {o['id'] for o in ops}
+              ~^^^^^^
+MemoryError
+
+失败 ('case_072', 3) 官方评估失败 case_072 P3:
+Traceback (most recent call last):
+  File "C:\Users\richd\Desktop\数�?建模\A�?1)\通用神经网络处理器下的�?核调度问�? 附件\code\multicore_cut_evaluate_problem_3.py", line 729, in <module>
+    raise SystemExit(run_problem_cli(3))
+                     ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\richd\Desktop\数�?建模\A�?1)\通用神经网络处理器下的�?核调度问�? 附件\code\contest_io.py", line 22, in run
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\richd\Desktop\数�?建模\A�?1)\通用神经网络处理器下的�?核调度问�? 附件\code\contest_io.py", line 250, in run_problem_cli
+    trace_text = format_scene_b_trace_json(graph_path.name, result)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\richd\Desktop\数�?建模\A�?1)\通用神经网络处理器下的�?核调度问�? 附件\code\contest_io.py", line 178, in format_scene_b_trace_json
+    return _trace_json(filename, result)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\richd\Desktop\数�?建模\A�?1)\通用神经网络处理器下的�?核调度问�? 附件\code\contest_io.py", line 160, in _trace_json
+    return json.dumps({
+           ^^^^^^^^^^^^
+  File "D:\Anaconda\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "D:\Anaconda\Lib\json\encoder.py", line 202, in encode
+    chunks = list(chunks)
+             ^^^^^^^^^^^^
+MemoryError
+
+失败 ('case_091', 5) 官方评估失败 case_091 P3:
+Traceback (most recent call last):
+  File "C:\Users\richd\Desktop\数�?建模\A�?1)\通用神经网络处理器下的�?核调度问�? 附件\code\multicore_cut_evaluate_problem_3.py", line 729, in <module>
+    raise SystemExit(run_problem_cli(3))
+                     ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\richd\Desktop\数�?建模\A�?1)\通用神经网络处理器下的�?核调度问�? 附件\code\contest_io.py", line 22, in run
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\richd\Desktop\数�?建模\A�?1)\通用神经网络处理器下的�?核调度问�? 附件\code\contest_io.py", line 246, in run_problem_cli
+    result = evaluate_problem_3(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\richd\Desktop\数�?建模\A�?1)\通用神经网络处理器下的�?核调度问�? 附件\code\multicore_cut_evaluate_problem_3.py", line 308, in evaluate_problem_3
+    data_movement, plan_view) = _build_scene_b_tasks(
+                                ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\richd\Desktop\数�?建模\A�?1)\通用神经网络处理器下的�?核调度问�? 附件\code\multicore_cut_evaluate_problem_3.py", line 281, in _build_scene_b_tasks
+    original_copy_traffic = _copy_traffic_bytes(graph_json)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\richd\Desktop\数�?建模\A�?1)\通用神经网络处理器下的�?核调度问�? 附件\code\multicore_cut_evaluate_problem_1.py", line 55, in _copy_traffic_bytes
+    in_tids, out_tids, _, _ = _build_graph_views(
+                              ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\richd\Desktop\数�?建模\A�?1)\通用神经网络处理器下的�?核调度问�? 附件\code\schedule_step3.py", line 41, in _build_graph_views
+    op_ids = {o['id'] for o in ops}
+              ~^^^^^^
+MemoryError
+
+失败 ('case_072', 5) 官方评估失败 case_072 P3:
+Traceback (most recent call last):
+  File "C:\Users\richd\Desktop\数�?建模\A�?1)\通用神经网络处理器下的�?核调度问�? 附件\code\multicore_cut_evaluate_problem_3.py", line 729, in <module>
+    raise SystemExit(run_problem_cli(3))
+                     ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\richd\Desktop\数�?建模\A�?1)\通用神经网络处理器下的�?核调度问�? 附件\code\contest_io.py", line 22, in run
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\richd\Desktop\数�?建模\A�?1)\通用神经网络处理器下的�?核调度问�? 附件\code\contest_io.py", line 246, in run_problem_cli
+    result = evaluate_problem_3(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\richd\Desktop\数�?建模\A�?1)\通用神经网络处理器下的�?核调度问�? 附件\code\multicore_cut_evaluate_problem_3.py", line 308, in evaluate_problem_3
+    data_movement, plan_view) = _build_scene_b_tasks(
+                                ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\richd\Desktop\数�?建模\A�?1)\通用神经网络处理器下的�?核调度问�? 附件\code\multicore_cut_evaluate_problem_3.py", line 281, in _build_scene_b_tasks
+    original_copy_traffic = _copy_traffic_bytes(graph_json)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\richd\Desktop\数�?建模\A�?1)\通用神经网络处理器下的�?核调度问�? 附件\code\multicore_cut_evaluate_problem_1.py", line 55, in _copy_traffic_bytes
+    in_tids, out_tids, _, _ = _build_graph_views(
+                              ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\richd\Desktop\数�?建模\A�?1)\通用神经网络处理器下的�?核调度问�? 附件\code\schedule_step3.py", line 59, in _build_graph_views
+    producers[tid].add(op_id)
+    ~~~~~~~~~^^^^^
+MemoryError
+
