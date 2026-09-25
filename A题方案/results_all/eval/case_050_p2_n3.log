@@ -1,8 +1,8 @@
 input_graph: case_050.json
 scene: B
-makespan: 56332
+makespan: 58761
 num_cores: 3
-data movement: scheduled_copy_bytes=1050096, physical_ddr_bytes=1050096
-core 0: ops=2007, end=56132
-core 1: ops=1966, end=56006
-core 2: ops=2362, end=56332
+data movement: scheduled_copy_bytes=1222768, physical_ddr_bytes=1222768
+core 0: ops=2139, end=58232
+core 1: ops=2313, end=58761
+core 2: ops=2056, end=57886

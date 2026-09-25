@@ -1,7 +1,7 @@
 input_graph: case_074.json
 scene: B
-makespan: 844257
+makespan: 822545
 num_cores: 2
-data movement: scheduled_copy_bytes=9343192, physical_ddr_bytes=9343192, cache_hits=432/1490, cache_hit_bytes=2473984
-core 0: ops=2634, end=844257
-core 1: ops=2561, end=814832
+data movement: scheduled_copy_bytes=9654504, physical_ddr_bytes=9654504, cache_hits=334/1492, cache_hit_bytes=1859584
+core 0: ops=2815, end=822545
+core 1: ops=2607, end=817813
