@@ -49,12 +49,19 @@ def read_result(res, elapsed=0.0):
     }
 
 
-def single_core_result(case, out_dir):
-    """单核基线带缓存：结果文件已存在时直接读取。"""
+def single_core_result(case, out_dir, key=None):
+    """单核基线带缓存：结果文件已存在、且 <用例>_single.key 与 key（官方评估器与用例文件的摘要）一致时直接读取。"""
     res = os.path.join(out_dir, '%s_single.json' % case)
+    stamp = res[:-5] + '.key'
     if os.path.exists(res):
-        return read_result(res)
-    return run_official(case, 0, None, out_dir)
+        old = open(stamp, encoding='utf-8').read().strip() if os.path.exists(stamp) else None
+        if key is None or old == key:
+            return read_result(res)
+    out = run_official(case, 0, None, out_dir)
+    if key is not None:
+        with open(stamp, 'w', encoding='utf-8') as f:
+            f.write(key)
+    return out
 
 
 def single_core_makespan(case, out_dir):

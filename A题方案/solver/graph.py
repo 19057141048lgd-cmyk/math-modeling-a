@@ -24,6 +24,8 @@ class Graph:
 
         self.path = path
         self.name = os.path.splitext(os.path.basename(path))[0]
+        self.n_ops = len(ops)
+        self.n_ops = len(ops)
         self.compute = sorted(i for i, o in ops.items() if o['op'] not in COPY_TYPES)
         cset = set(self.compute)
         self.cycles = {i: ops[i]['cycles'] for i in self.compute}

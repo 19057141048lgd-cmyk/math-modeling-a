@@ -2,10 +2,12 @@
 
 scene='A'：问题 1，子图即 Task，Task 级屏障（跨核 +1000、同核 +100），调度时显式维护 Task；
 scene='B'：问题 2，同核子图合并，算子级跨核依赖（COPY_OUT + 500 + COPY_IN）；
-scene='C'：问题 3，在 B 的基础上加入 FIFO 只读 L2 Cache 的命中模型。
+scene='C'：问题 3，在 B 的基础上加入 FIFO 只读 L2 Cache 的命中模型，命中读取共享 Cache 带宽。
 
 核模型：PIPE_M / PIPE_V 各自按序发射（与官方 PIPE_SLOTS=1 一致），MTE2 按序搬入，
 共享 DDR 带宽用时间桶近似；簇内算子按官方 step1 同规则的 DFS 序执行。
+场景 B/C 的 MTE3 也按核内顺序发射，COPY_OUT 位于子图末尾：只用 PIPE_M 的小簇排在长 PIPE_V 簇之后时，
+计算可以并行，但其 COPY_OUT 要等长簇的 COPY_OUT 发出（case_035 问题2 中这一阻塞使官方 makespan 比旧模型高 75%）。
 
 可选策略 opts：
   'blc'   优先级取向上秩 + 最大入边通信（Kulagina 等 CCGrid 2025 的 BLC），先执行能释放大输入的簇；
@@ -15,6 +17,7 @@ scene='C'：问题 3，在 B 的基础上加入 FIFO 只读 L2 Cache 的命中�
           被挤出的张量再次使用时重新搬入并计入流量。
 """
 import heapq
+from bisect import bisect_left, bisect_right, insort
 from collections import OrderedDict
 
 from .graph import cluster_topo
@@ -58,25 +61,43 @@ class DDRBins:
 
 
 class CacheModel:
-    """FIFO 只读 Cache：只有 COPY_IN 完成时插入，命中不刷新顺序，超过容量的张量不缓存。"""
+    """FIFO 只读 Cache：只有 COPY_IN 完成时插入，命中不刷新顺序，超过容量的张量不缓存。
+
+    列表调度按提交顺序而非时间顺序插入，因此插入记录按时刻排序保存。FIFO 下张量 x 在 t 时刻仍在
+    Cache 中，当且仅当 x 最近一次插入时刻 τ <= t，且 [τ, t] 内插入的字节（含 x）不超过容量。"""
 
     def __init__(self, capacity):
         self.capacity = capacity
-        self.entries = {}
-        self.cum = 0
+        self.times = []          # 按时刻排序的插入记录 (时刻, 序号)
+        self.sizes = {}          # 序号 -> 字节
+        self.by_tid = {}         # 张量 -> 该张量的插入时刻（升序）
 
     def present(self, tid, t):
-        e = self.entries.get(tid)
-        return e is not None and e[0] <= t and self.cum - e[1] <= self.capacity
+        ts = self.by_tid.get(tid)
+        if not ts:
+            return False
+        i = bisect_right(ts, t)
+        if i == 0:
+            return False
+        tau = ts[i - 1]
+        times, sizes = self.times, self.sizes
+        used = 0
+        for j in range(bisect_left(times, (tau, -1)), len(times)):
+            time, seq = times[j]
+            if time > t:
+                break
+            used += sizes[seq]
+            if used > self.capacity:
+                return False
+        return True
 
     def insert(self, tid, size, t):
-        if size > self.capacity:
+        if size > self.capacity or self.present(tid, t):
             return
-        e = self.entries.get(tid)
-        if e is not None and self.cum - e[1] <= self.capacity:
-            return
-        self.entries[tid] = (t, self.cum)
-        self.cum += size
+        seq = len(self.sizes)
+        self.sizes[seq] = size
+        insort(self.times, (t, seq))
+        insort(self.by_tid.setdefault(tid, []), t)
 
 
 class Schedule:
@@ -173,11 +194,15 @@ class ListScheduler:
         self.end = [0.0] * N
         self.ddr = DDRBins(self.bw)
         self.cache = CacheModel(self.hw.cache_capacity) if self.scene == 'C' else None
+        self.cache_bw = DDRBins(self.hw.cache_bandwidth)   # 各核的命中读取共享 Cache 读带宽
         self.loaded = [dict() for _ in range(N)]
         self.lru = [OrderedDict() for _ in range(N)]
         self.resid = [dict.fromkeys(('L1', 'UB'), 0.0) for _ in range(N)]
         self.read_once = set()
         self.cur = [None] * N
+        self.outq = [[] for _ in range(N)]   # 各核已提交、可能有 COPY_OUT、可能阻塞后续 COPY_OUT 的簇
+        self.blk = {}                        # 簇 -> 提交时本核上顺序在前且完成更晚的这类簇
+        p_remote = (N - 1) / N
 
         rank = self.priority()
         indeg = [len(c.preds) for c in cl]
@@ -195,7 +220,10 @@ class ListScheduler:
                     if res is None:
                         continue
                     f, traffic = res
-                    key = (f + self.locality * traffic / self.bw, f, self.tM[k] + self.tV[k], k)
+                    g = f
+                    if self.scene != 'A' and (c.succs or c.out_bytes):
+                        g += (1.0 if c.out_bytes else p_remote) * (self._mte3_ready(k, f, self.outq[k]) - f)
+                    key = (g + self.locality * traffic / self.bw, f, self.tM[k] + self.tV[k], k)
                     options.append((key, k, option, f))
             best = min(options)
             if self.child and len(cores) > 1:
@@ -231,11 +259,21 @@ class ListScheduler:
     # ---------------- 搬运 ----------------
     def _load(self, tid, size, start, commit):
         if self.cache is not None and self.cache.present(tid, start):
-            return start + size / self.hw.cache_bandwidth, True
+            return self.cache_bw.transfer(start, size, commit), True
         end = self.ddr.transfer(start, size, commit)
         if commit and self.cache is not None:
             self.cache.insert(tid, size, end)
         return end, False
+
+    def _mte3_ready(self, k, f, among):
+        """在 f 完成、排在 among 之后的簇，其 COPY_OUT 最早的发出时刻：among 中完成更晚、且有图输出或
+        跨核后继（未调度的后继按跨核计）的簇须先发出 COPY_OUT。"""
+        core, fin, cl = self.S.core, self.S.fin, self.cl
+        t = f
+        for x in among:
+            if fin[x] > t and (cl[x].out_bytes or any(core[s] != k for s in cl[x].succs)):
+                t = fin[x]
+        return t
 
     def _task_ready(self, p, tid):
         """场景 A：前驱簇 p 所在 Task 完成（含该张量 COPY_OUT）的时刻。"""
@@ -301,7 +339,8 @@ class ListScheduler:
                             a, _ = self._load(tid, size, t2, commit)
                             traffic += 2 * size
                         else:
-                            out_end = self.ddr.transfer(fin_c[q], size, commit)
+                            ready = self._mte3_ready(core[q], fin_c[q], self.blk[q])
+                            out_end = self.ddr.transfer(ready, size, commit)
                             a, hit = self._load(tid, size, max(out_end + self.delay, t2), commit)
                             traffic += size + (size * self.hit_cost if hit else size)
                         t2 = a
@@ -332,7 +371,19 @@ class ListScheduler:
         if self.mem_cap is not None:
             self._retain(k, used)
         self.read_once.update(c.inputs)
-        out_end = self.ddr.transfer(fin, c.out_bytes, True) if c.out_bytes else fin
+        out_start = fin
+        if scene != 'A':
+            q = self.outq[k]
+            self.blk[cid] = [x for x in q if fin_c[x] > fin]
+            out_start = self._mte3_ready(k, fin, self.blk[cid])
+            if c.succs or c.out_bytes:
+                q.append(cid)
+            # 之后提交到本核的簇完成时刻都晚于 min(tM, tV)，更早完成的簇、以及后继都已调度在本核且无图输出的簇
+            # 不会再阻塞它们
+            lo, cl = min(tM, tV), self.cl
+            self.outq[k] = [x for x in q if fin_c[x] > lo and
+                            (cl[x].out_bytes or any(core[s] != k for s in cl[x].succs))]
+        out_end = self.ddr.transfer(out_start, c.out_bytes, True) if c.out_bytes else fin
         self.tM[k], self.tV[k], self.t2[k] = tM, tV, t2
         self.end[k] = max(self.end[k], out_end)
         if scene == 'A':
